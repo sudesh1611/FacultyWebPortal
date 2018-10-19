@@ -53,16 +53,16 @@
 
         <div class="row">
             <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1 form-group ">
-                <label asp-for="MyProfile.FullName" style="font-weight:normal;">Full Name:</label>
-                <input type="text" class="form-control" asp-for="MyProfile.FullName" required />
+                <label asp-for="MyProfile.FullName" style="font-weight:normal;text-transform:capitalize;">Full Name:</label>
+                <input type="text" class="form-control" asp-for="MyProfile.FullName" required style="text-transform:capitalize;"/>
                 <span asp-validation-for="MyProfile.FullName" class="text-danger"></span>
             </div>
         </div>
 
         <div class="row">
             <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1 form-group ">
-                <label asp-for="MyProfile.Designation" style="font-weight:normal;">Designation:</label>
-                <input type="text" class="form-control" asp-for="MyProfile.Designation" required />
+                <label asp-for="MyProfile.Designation" style="font-weight:normal;text-transform:capitalize;">Designation:</label>
+                <input type="text" class="form-control" asp-for="MyProfile.Designation" required style="text-transform:capitalize;"/>
                 <span asp-validation-for="MyProfile.Designation" class="text-danger"></span>
             </div>
         </div>

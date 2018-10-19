@@ -14,7 +14,7 @@
     <div class="row">
         <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 form-group">
             <label asp-for="Student.StudentName">Name of Student:</label>
-            <input type="text" class="form-control" asp-for="Student.StudentName" style="background-color:#ecf0f1;" required/>
+            <input type="text" class="form-control" asp-for="Student.StudentName" style="background-color:#ecf0f1;text-transform:capitalize;" required/>
             <span asp-validation-for="Student.StudentName" class="text-danger"></span>
         </div>
     </div>

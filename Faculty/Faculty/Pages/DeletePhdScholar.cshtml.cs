@@ -53,6 +53,10 @@ namespace Faculty.Pages
             {
                 if (ModelState.IsValid)
                 {
+                    if(ID==0)
+                    {
+                        ID = Student.ID;
+                    }
                     var tempUser = await phdStudentsDbContext.PhdStudents.SingleOrDefaultAsync(m => m.ID == ID);
                     phdStudentsDbContext.PhdStudents.Remove(tempUser);
                     await phdStudentsDbContext.SaveChangesAsync();

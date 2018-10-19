@@ -14,7 +14,6 @@ namespace Faculty.Pages
     public class EditPhdScholarModel : PageModel
     {
         private readonly PhdStudentsDbContext phdStudentsDbContext;
-        private readonly ProfileDbContext profileDbContext;
 
         [BindProperty]
         public PhdStudents Student { get; set; }
@@ -22,10 +21,9 @@ namespace Faculty.Pages
         [TempData]
         public int ID { set; get; }
 
-        public EditPhdScholarModel(PhdStudentsDbContext phd,ProfileDbContext pro)
+        public EditPhdScholarModel(PhdStudentsDbContext phd)
         {
             phdStudentsDbContext = phd;
-            profileDbContext = pro;
             Student = new PhdStudents();
         }
 
@@ -44,6 +42,10 @@ namespace Faculty.Pages
             {
                 if (ModelState.IsValid)
                 {
+                    if (ID == 0)
+                    {
+                        ID = Student.ID;
+                    }
                     var tempUser = await phdStudentsDbContext.PhdStudents.SingleOrDefaultAsync(m => m.ID == ID);
                     tempUser.College = Student.College;
                     tempUser.DegreeCompletion = Student.DegreeCompletion;

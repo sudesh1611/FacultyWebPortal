@@ -1,0 +1,82 @@
+﻿@page
+@model Faculty.Pages.EditCoursesPageModel
+@{
+    ViewData["Title"] = "Edit Courses Page";
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+<h1 class="text-center" style="font-family:'Comic Sans MS';">Edit Courses Page</h1>
+    <hr />
+
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12 col-lg-offset-4 col-md-offset-4 text-center">
+            <a style="background-color:#34495e;color:#FFFFFF;" asp-page="/AddNewCourse" class="btn">Add New Course</a>
+        </div>
+    </div>
+
+    <br />
+    <br />
+    <div class="row">
+        <div class="container">
+            <h3 class="text-left" style="font-family:'Comic Sans MS';">Courses</h3>
+            <br />
+            <table class="table">
+                <tr>
+                    <th>S.No.</th>
+                    <th>Course Code</th>
+                    <th>Course Title</th>
+                    <th>Semester</th>
+                    <th>Year</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                @for (int i = 0; i < Model.CoursesList.Count; i++)
+                {
+                    <tr>
+                        <td>
+                            @(i + 1).
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => Model.CoursesList[i].CourseCode)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => Model.CoursesList[i].CourseTitle)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => Model.CoursesList[i].CourseSemester)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => Model.CoursesList[i].CourseYear)
+                        </td>
+                        <td>
+                            <a asp-page="/EditCourse" asp-route-id="@Model.CoursesList[i].ID">Edit</a>
+                        </td>
+                        <td>
+                            <a asp-page="/DeleteCourse" asp-route-id="@Model.CoursesList[i].ID">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+}
+else
+{
+    <h2 class="text-center">Edit Courses</h2>
+    <hr />
+    <br />
+    <br />
+    <p class="text-danger text-center">You Can Edit This Page Only If You Are Logged In.</p>
+    <br />
+    <div class="text-center">
+        <a class="btn btn-default" asp-page="/Login">Login</a>
+    </div>
+}
+
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
+
+
