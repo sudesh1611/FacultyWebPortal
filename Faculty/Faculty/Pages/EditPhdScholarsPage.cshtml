@@ -1,0 +1,84 @@
+﻿@page
+@model Faculty.Pages.EditPhdScholarsPageModel
+@{
+    ViewData["Title"] = "Edit PhDs Page";
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+    <h1 class="text-center" style="font-family:'Comic Sans MS';">Edit PhD Scholars</h1>
+    <hr />
+
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12 col-lg-offset-4 col-md-offset-4 text-center">
+            <a style="background-color:#34495e;color:#FFFFFF;" asp-page="/AddNewPhdScholar" class="btn">Add New scholar</a>
+        </div>
+    </div>
+
+    <br />
+    <br />
+    <div class="row">
+        <div class="container">
+            <h3 class="text-left" style="font-family:'Comic Sans MS';">PhD Scholars</h3>
+            <br />
+            <table class="table">
+                <tr>
+                    <th>S.No.</th>
+                    <th>Name of The Student</th>
+                    <th>Thesis Title</th>
+                    <th>Degree Awarded/Ongoing</th>
+                    <th>Degree Completion Year</th>
+                    <th>Institute/University</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                @for (int i = 0; i < Model.phdStudentsList.Count; i++)
+                {
+                <tr>
+                    <td>
+                        @(i+1).
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.phdStudentsList[i].StudentName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.phdStudentsList[i].ThesisTitle)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.phdStudentsList[i].DegreeStatus)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.phdStudentsList[i].DegreeCompletion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.phdStudentsList[i].College)
+                    </td>
+                    <td>
+                        <a asp-page="/EditPhdScholar" asp-route-id="@Model.phdStudentsList[i].ID">Edit</a>
+                    </td>
+                    <td>
+                        <a asp-page="/DeletePhdScholar" asp-route-id="@Model.phdStudentsList[i].ID">Delete</a>
+                    </td>
+                </tr>
+                }
+            </table>
+        </div>
+    </div>
+}
+else
+{
+    <h2 class="text-center">Edit PhD Scholars</h2>
+    <hr />
+    <br />
+    <br />
+    <p class="text-danger text-center">You Can Edit This Page Only If You Are Logged In.</p>
+    <br />
+    <div class="text-center">
+        <a class="btn btn-default" asp-page="/Login">Login</a>
+    </div>
+}
+
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

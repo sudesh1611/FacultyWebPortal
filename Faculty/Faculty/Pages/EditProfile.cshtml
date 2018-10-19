@@ -1,0 +1,248 @@
+﻿@page
+@model Faculty.Pages.EditProfileModel
+@{
+    ViewData["Title"] = "Edit Profile";
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+    <h1 class="text-center" style="font-family:'Comic Sans MS';">Edit Profile</h1>
+    <hr />
+
+    <div class="row text-center">
+        <div class="col-lg-2 col-md-2 col-xs-4 col-sm-4 col-lg-offset-5 col-md-offset-5 col-sm-offset-4 col-xs-offset-4 text-center">
+            <a href="@Model.MyProfile.ProfilePic"><img src="@Model.MyProfile.ProfilePic" alt="Profile Pic" class="img-rounded img-responsive"></a>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="row text-center">
+        <div class="col-lg-2 col-md-2 col-xs-4 col-sm-4 col-lg-offset-5 col-md-offset-5 col-sm-offset-4 col-xs-offset-4 text-center">
+            <button type="button" class="btn btn-sm" data-toggle="modal" data-target="#myModal1">Upload Pic</button>
+            <div class="modal fade" id="myModal1" role="dialog" style="background-color:#ecf0f1;">
+                <div class="modal-dialog" style="background-color:#ecf0f1;">
+                    <div class="modal-content" style="background-color:#ecf0f1;">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Upload Pic</h4>
+                        </div>
+                        <div class="modal-body text-center">
+                            <form asp-page="/UploadPic" method="post" enctype="multipart/form-data" class="form-inline">
+                                <input type="file" accept="image/*" name="file" class="btn btn-sm" />
+                                <button type="submit" class="btn btn-sm">Upload Different Pic</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+
+    <form method="post">
+
+        <div class="row">
+            <div asp-validation-summary="All" class="col-lg-4 col-md-4 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1 text-danger"></div>
+        </div>
+
+        <div class="row">
+            <h4 class="col-lg-4 col-md-4 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1" style="font-weight:bold;">Professional Details</h4>
+        </div>
+        <br />
+
+        <div class="row">
+            <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1 form-group ">
+                <label asp-for="MyProfile.FullName" style="font-weight:normal;">Full Name:</label>
+                <input type="text" class="form-control" asp-for="MyProfile.FullName" required />
+                <span asp-validation-for="MyProfile.FullName" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1 form-group ">
+                <label asp-for="MyProfile.Designation" style="font-weight:normal;">Designation:</label>
+                <input type="text" class="form-control" asp-for="MyProfile.Designation" required />
+                <span asp-validation-for="MyProfile.Designation" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1 form-group ">
+                <label asp-for="MyProfile.Department" style="font-weight:normal;">Department:</label>
+                <input type="text" class="form-control" asp-for="MyProfile.Department" required />
+                <span asp-validation-for="MyProfile.Department" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1 form-group ">
+                <label asp-for="MyProfile.College" style="font-weight:normal;">College:</label>
+                <input type="text" class="form-control" asp-for="MyProfile.College" required />
+                <span asp-validation-for="MyProfile.College" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1 form-group ">
+                <label asp-for="MyProfile.AreasOfInterest" style="font-weight:normal;">Areas of Interest(seprated by comma):</label>
+                <textarea rows="2" type="text" class="form-control" asp-for="MyProfile.AreasOfInterest" required></textarea>
+                <span asp-validation-for="MyProfile.AreasOfInterest" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1 form-group ">
+                <label asp-for="MyProfile.Achievements" style="font-weight:normal;">Achievements(seprated by comma):</label>
+                <textarea rows="2" type="text" class="form-control" asp-for="MyProfile.Achievements" required></textarea>
+                <span asp-validation-for="MyProfile.Achievements" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1 form-group ">
+                <label asp-for="MyProfile.ShortBio" style="font-weight:normal;">Short bio of yourself:</label>
+                <textarea rows="3" type="text" class="form-control" asp-for="MyProfile.ShortBio" required></textarea>
+                <span asp-validation-for="MyProfile.ShortBio" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1 form-group ">
+                <label asp-for="MyProfile.GoogleScholarLink" style="font-weight:normal;">Google Scholar Link:</label>
+                <input type="url" class="form-control" asp-for="MyProfile.GoogleScholarLink" required />
+                <span asp-validation-for="MyProfile.GoogleScholarLink" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1 form-group ">
+                <label asp-for="MyProfile.ProfessionalExperience" style="font-weight:normal;">Length of Professional Experience:</label>
+                <input type="text" class="form-control" asp-for="MyProfile.ProfessionalExperience" required />
+                <span asp-validation-for="MyProfile.ProfessionalExperience" class="text-danger"></span>
+            </div>
+        </div>
+
+
+
+        <br />
+        <div class="row">
+            <div class="col-lg-11 col-md-11 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1 form-group ">
+                <hr />
+            </div>
+        </div>
+        <br />
+
+
+
+        <div class="row">
+            <h4 class="col-lg-4 col-md-4 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1" style="font-weight:bold;">Academic Background</h4>
+        </div>
+        <br />
+        <div class="row">
+            <p class="col-lg-4 col-md-4 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1">Under Graduation Degree:</p>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1 form-group ">
+                <input type="text" class="form-control" asp-for="MyProfile.UGDegree" required placeholder="Degree (B.Tech / B.E / B.Sc)" />
+                <span asp-validation-for="MyProfile.UGDegree" class="text-danger"></span>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 form-group ">
+                <input type="text" class="form-control" asp-for="MyProfile.UGCollege" required placeholder="College/University" />
+                <span asp-validation-for="MyProfile.UGCollege" class="text-danger"></span>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 form-group ">
+                <input type="text" class="form-control" asp-for="MyProfile.UGCompletionYear" required placeholder="Completion Year" />
+                <span asp-validation-for="MyProfile.UGCompletionYear" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <p class="col-lg-4 col-md-4 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1">PostGraduation Degree:</p>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1 form-group ">
+                <input type="text" class="form-control" asp-for="MyProfile.PGDegree" required placeholder="Degree (M.Tech / M.S / M.Sc)" />
+                <span asp-validation-for="MyProfile.PGDegree" class="text-danger"></span>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 form-group ">
+                <input type="text" class="form-control" asp-for="MyProfile.PGCollege" required placeholder="College/University" />
+                <span asp-validation-for="MyProfile.PGCollege" class="text-danger"></span>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 form-group ">
+                <input type="text" class="form-control" asp-for="MyProfile.PGCompletionYear" required placeholder="Completion Year" />
+                <span asp-validation-for="MyProfile.PGCompletionYear" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <p class="col-lg-4 col-md-4 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1">Doctorate Details:</p>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1 form-group ">
+                <input type="text" class="form-control" asp-for="MyProfile.PhDCollege" required placeholder="College/University" />
+                <span asp-validation-for="MyProfile.PhDCollege" class="text-danger"></span>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 form-group ">
+                <input type="text" class="form-control" asp-for="MyProfile.PhDCompletionYear" required placeholder="Completion Year/Ongoing" />
+                <span asp-validation-for="MyProfile.PhDCompletionYear" class="text-danger"></span>
+            </div>
+        </div>
+
+
+
+        <br />
+        <div class="row">
+            <div class="col-lg-11 col-md-11 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1 form-group ">
+                <hr />
+            </div>
+        </div>
+        <br />
+
+
+
+        <div class="row">
+            <h4 class="col-lg-4 col-md-4 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1" style="font-weight:bold;">Contact Details</h4>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1 form-group ">
+                <label asp-for="MyProfile.EmailID" style="font-weight:normal;">Email ID:</label>
+                <input type="email" class="form-control" asp-for="MyProfile.EmailID" required />
+                <span asp-validation-for="MyProfile.EmailID" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1 form-group ">
+                <label asp-for="MyProfile.MobileNumber" style="font-weight:normal;">Mobile Number:</label>
+                <input type="tel" class="form-control" asp-for="MyProfile.MobileNumber" required />
+                <span asp-validation-for="MyProfile.MobileNumber" class="text-danger"></span>
+            </div>
+        </div>
+
+        <br />
+
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+
+                <input type="submit" class="btn " value="Save Changes" style="background-color:#34495e;color:#FFFFFF;" />
+
+            </div>
+        </div>
+    </form>
+
+}
+else
+{
+    <h2 class="text-center">Edit Profile</h2>
+    <hr />
+    <br />
+    <br />
+    <p class="text-danger text-center">You Can Edit Profile Only If You Are Logged In.</p>
+    <br />
+    <div class="text-center">
+        <a class="btn btn-default" asp-page="/Login">Login</a>
+    </div>
+}
+
