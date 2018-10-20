@@ -17,7 +17,6 @@ namespace Faculty.Pages
         [BindProperty]
         public Assignment newAssignment { get; set; }
 
-        [TempData]
         public int ID { set; get; }
 
         public EditAssignmentDeadlineModel(AssignmentDbContext phd)

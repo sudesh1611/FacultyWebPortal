@@ -37,7 +37,7 @@ namespace Faculty.Pages
                     {
                         Directory.CreateDirectory(path);
                     }
-                    newAssignment.SubmissionDirectoryLink = path;
+                    newAssignment.SubmissionDirectoryLink = Path.Combine("Assignments", "Assignment" + CurrentAssignment.ID);
                     assignmentDbContext.Assignments.Update(newAssignment);
                     await assignmentDbContext.SaveChangesAsync();
                 }

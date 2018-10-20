@@ -25,13 +25,13 @@ namespace Faculty.Pages
                 return Content("file not selected");
 
             var assignment = assignmentDbContext.Assignments.Last();
-            var path = Path.Combine(assignment.SubmissionDirectoryLink, "attachment"+file.FileName);
+            var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", assignment.SubmissionDirectoryLink, "attachment" + file.FileName);
 
             using (var stream = new FileStream(path, FileMode.Create))
             {
                 await file.CopyToAsync(stream);
             }
-            assignment.AttachmentFulLink = path;
+            assignment.AttachmentFulLink = Path.Combine(assignment.SubmissionDirectoryLink, "attachment" + file.FileName);
             assignmentDbContext.Assignments.Update(assignment);
             await assignmentDbContext.SaveChangesAsync();
             return RedirectToPage("/UploadAssignmentAttachmentPage");

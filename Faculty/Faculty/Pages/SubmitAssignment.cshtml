@@ -1,0 +1,33 @@
+﻿@page
+@model Faculty.Pages.SubmitAssignmentModel
+@{
+    ViewData["Title"] = "Submit Assignment";
+}
+
+<h1 class="text-center" style="font-family:'Comic Sans MS';">Submit Assignment</h1>
+<hr />
+<br />
+<div class="row text-center">
+    <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12 col-lg-offset-3 col-md-offset-3 text-center">
+        <button type="button" class="btn btn-sm" data-toggle="modal" data-target="#myModal2">Upload Assignment</button>
+        <div class="modal fade" id="myModal2" role="dialog" style="background-color:#ecf0f1;">
+            <div class="modal-dialog" style="background-color:#ecf0f1;">
+                <div class="modal-content" style="background-color:#ecf0f1;">
+                    <div class="modal-header" style="background-color:#ecf0f1;">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Upload Assignment</h4>
+                    </div>
+                    <div class="modal-body" style="background-color:#ecf0f1;">
+                        <form asp-page="/UploadAssignment" method="post" enctype="multipart/form-data" class="form-inline">
+                            <input type="file" name="file" class="btn btn-sm" />
+                            <button type="submit" class="btn btn-sm">Upload</button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<br />
