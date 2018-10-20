@@ -1,0 +1,107 @@
+﻿@page
+@model Faculty.Pages.AddNewAssignmentModel
+@{
+    ViewData["Title"] = "Add New Assignment";
+}
+
+@if(User.Identity.IsAuthenticated)
+{
+    <h1 class="text-center" style="font-family:'Comic Sans MS';">Add New Assignment</h1>
+<hr />
+<br />
+<form method="post">
+    <div class="row">
+        <div asp-validation-summary="ModelOnly" class="col-lg-4 col-md-4 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 text-danger"></div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 form-group">
+            <label asp-for="newAssignment.CourseID">Select Course:</label>
+            <select class="form-control" asp-for="newAssignment.CourseID" style="background-color:#ecf0f1;">
+                @foreach (var course in Model.CoursesList)
+                {
+                    <option value="@course.ID">@(course.CourseTitle + " - " + course.CourseSemester + " Semester " + course.CourseYear)</option>
+                }
+            </select>
+            <span asp-validation-for="newAssignment.CourseID" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 form-group">
+            <label asp-for="newAssignment.AssignmentTitle">Assignment Title:</label>
+            <input type="text" class="form-control" asp-for="newAssignment.AssignmentTitle" style="background-color:#ecf0f1;" required />
+            <span asp-validation-for="newAssignment.AssignmentTitle" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 form-group">
+            <label asp-for="newAssignment.AssignmentDescription">Assignment Description :</label>
+            <textarea rows="6" type="text" class="form-control" asp-for="newAssignment.AssignmentDescription" style="background-color:#ecf0f1;" required></textarea>
+            <span asp-validation-for="newAssignment.AssignmentDescription" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row">
+        <h5 class="col-lg-4 col-md-4 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2" style="font-weight:bold;">Assignment Deadline</h5>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 form-group">
+            <label asp-for="newAssignment.DeadlineDay">Day of Month:</label>
+            <select class="form-control" asp-for="newAssignment.DeadlineDay" style="background-color:#ecf0f1;">
+                @for (int i = 1; i <= 31; i++)
+                {
+                    <option value="@i">@i.ToString()</option>
+                }
+            </select>
+            <span asp-validation-for="newAssignment.DeadlineDay" class="text-danger"></span>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 form-group">
+            <label asp-for="newAssignment.DeadLineMonth">Month:</label>
+            <select class="form-control" asp-for="newAssignment.DeadLineMonth" style="background-color:#ecf0f1;">
+                @for (int i = 1; i <= 12; i++)
+                {
+                    <option value="@i">@i.ToString()</option>
+                }
+            </select>
+            <span asp-validation-for="newAssignment.DeadLineMonth" class="text-danger"></span>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 form-group">
+            <label asp-for="newAssignment.DeadlineYear">Year:</label>
+            <select class="form-control" asp-for="newAssignment.DeadlineYear" style="background-color:#ecf0f1;">
+                @for (int i = 2022; i >= 1995; i--)
+                {
+                    <option value="@i">@i.ToString()</option>
+                }
+            </select>
+            <span asp-validation-for="newAssignment.DeadlineYear" class="text-danger"></span>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 form-group">
+            <label asp-for="newAssignment.DeadlineTime">Time:</label>
+            <select class="form-control" asp-for="newAssignment.DeadlineTime" style="background-color:#ecf0f1;">
+                @for (int i = 00; i <= 23; i++)
+                {
+                    <option value="@i">@(i.ToString()+":00")</option>
+                }
+            </select>
+            <span asp-validation-for="newAssignment.DeadlineTime" class="text-danger"></span>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+
+            <input type="submit" class="btn " value="Continue" style="background-color:#34495e;color:#FFFFFF;" />
+
+        </div>
+    </div>
+</form>
+<br />
+<br />
+}
+else
+{
+
+}
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
