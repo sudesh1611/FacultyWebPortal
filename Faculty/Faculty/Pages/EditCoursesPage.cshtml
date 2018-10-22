@@ -1,7 +1,11 @@
 ﻿@page
 @model Faculty.Pages.EditCoursesPageModel
 @{
-    ViewData["Title"] = "Edit Courses Page";
+    Layout = "AdminLayout";
+    ViewData["Title"] = "Admin Dashboard";
+    ViewData["Name"] = Model.CurrentProfile.FullName;
+    ViewData["Department"] = Model.CurrentProfile.Department;
+    ViewData["College"] = Model.CurrentProfile.College;
 }
 
 @if (User.Identity.IsAuthenticated)

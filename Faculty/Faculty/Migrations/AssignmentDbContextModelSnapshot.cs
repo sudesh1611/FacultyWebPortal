@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Faculty.Migrations.AssignmentDb
+namespace Faculty.Migrations
 {
     [DbContext(typeof(AssignmentDbContext))]
     partial class AssignmentDbContextModelSnapshot : ModelSnapshot

@@ -14,6 +14,8 @@ namespace Faculty.Pages
     public class DeleteCourseModel : PageModel
     {
         private readonly CourseDbContext courseDbContext;
+        private readonly ProfileDbContext profileDbContext;
+        public Profile CurrentProfile { set; get; }
 
         [BindProperty]
         public Course course { get; set; }
@@ -21,14 +23,17 @@ namespace Faculty.Pages
         [TempData]
         public int ID { set; get; }
 
-        public DeleteCourseModel(CourseDbContext phd)
+        public DeleteCourseModel(CourseDbContext phd, ProfileDbContext pDb)
         {
             courseDbContext = phd;
             course = new Course();
+            profileDbContext = pDb;
+            CurrentProfile = new Profile();
         }
 
         public async Task OnGetAsync(int? id)
         {
+            CurrentProfile = await profileDbContext.Profiles.SingleOrDefaultAsync(m => m.ID == 1);
             ID = (int)id;
             if (User.Identity.IsAuthenticated)
             {
@@ -39,7 +44,7 @@ namespace Faculty.Pages
                     course.TeachingAssistants = String.Empty;
                     for (int i = 0; i <= tempList.Count - 2; i++)
                     {
-                        course.TeachingAssistants = course.TeachingAssistants + tempList[i] + ",";
+                        course.TeachingAssistants = course.TeachingAssistants + tempList[i] + ";";
                     }
                     course.TeachingAssistants = course.TeachingAssistants + tempList[tempList.Count - 1];
                 }

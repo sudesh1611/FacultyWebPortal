@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Faculty.Migrations.PhdStudentsDb
+namespace Faculty.Migrations.UserDb
 {
-    [DbContext(typeof(PhdStudentsDbContext))]
-    [Migration("20181018190725_InitialPhdMigration")]
-    partial class InitialPhdMigration
+    [DbContext(typeof(UserDbContext))]
+    [Migration("20181022171653_InitUser")]
+    partial class InitUser
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -17,24 +17,26 @@ namespace Faculty.Migrations.PhdStudentsDb
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.1.4-rtm-31024");
 
-            modelBuilder.Entity("Faculty.Models.PhdStudents", b =>
+            modelBuilder.Entity("Faculty.Models.User", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("College");
+                    b.Property<string>("ConfirmPassword")
+                        .IsRequired();
 
-                    b.Property<string>("DegreeStatus");
+                    b.Property<string>("EmailID")
+                        .IsRequired();
 
-                    b.Property<string>("StudentName");
+                    b.Property<string>("FullName")
+                        .IsRequired();
 
-                    b.Property<int>("SupervisorID");
-
-                    b.Property<string>("ThesisTitle");
+                    b.Property<string>("Password")
+                        .IsRequired();
 
                     b.HasKey("ID");
 
-                    b.ToTable("PhdStudents");
+                    b.ToTable("Users");
                 });
 #pragma warning restore 612, 618
         }

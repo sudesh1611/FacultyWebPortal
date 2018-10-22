@@ -15,6 +15,7 @@ namespace Faculty.Pages
     {
         private readonly ProfileDbContext profileDbContext;
         private readonly PhdStudentsDbContext phdStudentsDbContext;
+        public Profile CurrentProfile { set; get; }
 
         public List<PhdStudents> phdStudentsList { get; set; }
 
@@ -22,11 +23,13 @@ namespace Faculty.Pages
         {
             profileDbContext = pdb;
             phdStudentsDbContext = phddb;
+            CurrentProfile = new Profile();
         }
 
         public async Task OnGetAsync()
         {
-            if(User.Identity.IsAuthenticated)
+            CurrentProfile = await profileDbContext.Profiles.SingleOrDefaultAsync(m => m.ID == 1);
+            if (User.Identity.IsAuthenticated)
             {
                 string emaiID = User.FindFirst(ClaimTypes.Email).Value;
                 var Supervisor = await profileDbContext.Profiles.SingleOrDefaultAsync(m => m.LoginEmailID == emaiID);

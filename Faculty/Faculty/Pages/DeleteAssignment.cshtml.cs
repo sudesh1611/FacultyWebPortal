@@ -13,6 +13,8 @@ namespace Faculty.Pages
     public class DeleteAssignmentModel : PageModel
     {
         private readonly AssignmentDbContext assignmentDbContext;
+        private readonly ProfileDbContext profileDbContext;
+        public Profile CurrentProfile { set; get; }
 
         [BindProperty]
         public Assignment newAssignment { get; set; }
@@ -20,14 +22,17 @@ namespace Faculty.Pages
         [TempData]
         public int ID { set; get; }
 
-        public DeleteAssignmentModel(AssignmentDbContext phd)
+        public DeleteAssignmentModel(AssignmentDbContext phd, ProfileDbContext pDb)
         {
             assignmentDbContext = phd;
+            profileDbContext = pDb;
+            CurrentProfile = new Profile();
             newAssignment = new Assignment();
         }
 
         public async Task OnGetAsync(int? id)
         {
+            CurrentProfile = await profileDbContext.Profiles.SingleOrDefaultAsync(m => m.ID == 1);
             ID = (int)id;
             if (User.Identity.IsAuthenticated)
             {

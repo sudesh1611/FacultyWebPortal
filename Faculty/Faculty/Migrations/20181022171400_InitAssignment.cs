@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Faculty.Migrations.AssignmentDb
+namespace Faculty.Migrations
 {
-    public partial class InitialAssignmentMigration : Migration
+    public partial class InitAssignment : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -1,10 +1,14 @@
 ﻿@page
 @model Faculty.Pages.AddNewAssignmentModel
 @{
-    ViewData["Title"] = "Add New Assignment";
+    Layout = "AdminLayout";
+    ViewData["Title"] = "Admin Dashboard";
+    ViewData["Name"] = Model.CurrentProfile.FullName;
+    ViewData["Department"] = Model.CurrentProfile.Department;
+    ViewData["College"] = Model.CurrentProfile.College;
 }
 
-@if(User.Identity.IsAuthenticated)
+@if (User.Identity.IsAuthenticated)
 {
     <h1 class="text-center" style="font-family:'Comic Sans MS';">Add New Assignment</h1>
 <hr />

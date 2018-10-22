@@ -14,6 +14,8 @@ namespace Faculty.Pages
     public class EditPhdScholarModel : PageModel
     {
         private readonly PhdStudentsDbContext phdStudentsDbContext;
+        private readonly ProfileDbContext profileDbContext;
+        public Profile CurrentProfile { set; get; }
 
         [BindProperty]
         public PhdStudents Student { get; set; }
@@ -21,14 +23,17 @@ namespace Faculty.Pages
         [TempData]
         public int ID { set; get; }
 
-        public EditPhdScholarModel(PhdStudentsDbContext phd)
+        public EditPhdScholarModel(PhdStudentsDbContext phd, ProfileDbContext pdc)
         {
             phdStudentsDbContext = phd;
             Student = new PhdStudents();
+            profileDbContext = pdc;
+            CurrentProfile = new Profile();
         }
 
         public async Task OnGetAsync(int? id)
         {
+            CurrentProfile = await profileDbContext.Profiles.SingleOrDefaultAsync(m => m.ID == 1);
             ID = (int)id;
             if (User.Identity.IsAuthenticated)
             {

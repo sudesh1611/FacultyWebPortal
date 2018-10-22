@@ -16,22 +16,29 @@ namespace Faculty.Pages
     {
         private readonly AssignmentDbContext assignmentDbContext;
         private readonly CourseDbContext courseDbContext;
+        private readonly ProfileDbContext profileDbContext;
+        public Profile CurrentProfile { set; get; }
         public List<Course> CoursesList { get; set; }
 
         [BindProperty]
         public Assignment newAssignment { set; get; }
 
-        public AddNewAssignmentModel(AssignmentDbContext adb,CourseDbContext cdb)
+        public AddNewAssignmentModel(AssignmentDbContext adb,CourseDbContext cdb, ProfileDbContext pdb)
         {
             assignmentDbContext = adb;
             courseDbContext = cdb;
+
             CoursesList = new List<Course>();
             newAssignment = new Assignment();
+
+            profileDbContext = pdb;
+            CurrentProfile = new Profile();
         }
 
         public async Task OnGetAsync()
         {
-            if(User.Identity.IsAuthenticated)
+            CurrentProfile = await profileDbContext.Profiles.SingleOrDefaultAsync(m => m.ID == 1);
+            if (User.Identity.IsAuthenticated)
             {
                 
                 CoursesList = await courseDbContext.Courses.ToListAsync();

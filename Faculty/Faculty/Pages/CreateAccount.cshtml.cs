@@ -20,21 +20,24 @@ namespace Faculty.Pages
 
         private readonly UserDbContext userDbContext;
         private readonly ProfileDbContext profileDbContext;
+        public Profile CurrentProfile { set; get; }
 
         public CreateAccountModel(UserDbContext uDb,ProfileDbContext pDb)
         {
             userDbContext = uDb;
             profileDbContext = pDb;
+            CurrentProfile = new Profile();
         }
 
-        public void OnGet()
+        public async Task<IActionResult> OnGetAsync()
         {
-
+            CurrentProfile = await profileDbContext.Profiles.SingleOrDefaultAsync(m => m.ID == 1);
+            return RedirectToPage("/Index");
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if(User.Identity.IsAuthenticated)
+            if (User.Identity.IsAuthenticated)
             {
                 if(ModelState.IsValid)
                 {

@@ -4,16 +4,18 @@ using System.Linq;
 using System.Threading.Tasks;
 using Faculty.Data;
 using Faculty.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
 namespace Faculty.Pages
 {
-    public class ContactModel : PageModel
+    public class AdminDashboardModel : PageModel
     {
         private readonly ProfileDbContext profileDbContext;
         public Profile CurrentProfile { set; get; }
-        public ContactModel(ProfileDbContext pdb)
+
+        public AdminDashboardModel(ProfileDbContext pdb)
         {
             profileDbContext = pdb;
             CurrentProfile = new Profile();

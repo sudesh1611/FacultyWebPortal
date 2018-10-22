@@ -16,6 +16,7 @@ namespace Faculty.Pages
     {
         private readonly CourseDbContext courseDbContext;
         private readonly ProfileDbContext profileDbContext;
+        public Profile CurrentProfile { set; get; }
 
         [BindProperty]
         public Course course { get; set; }
@@ -24,10 +25,12 @@ namespace Faculty.Pages
         {
             courseDbContext = phd;
             profileDbContext = prdb;
+            CurrentProfile = new Profile();
         }
 
         public async Task<IActionResult> OnGetAsync()
         {
+            CurrentProfile = await profileDbContext.Profiles.SingleOrDefaultAsync(m => m.ID == 1);
             if (!User.Identity.IsAuthenticated)
             {
                 return RedirectToPage("/Error");
@@ -44,7 +47,7 @@ namespace Faculty.Pages
                     string emaiID = User.FindFirst(ClaimTypes.Email).Value;
                     var supervisor = await profileDbContext.Profiles.SingleOrDefaultAsync(m => m.LoginEmailID == emaiID);
                     course.SupervisorID = supervisor.ID;
-                    var tempString = course.TeachingAssistants.Split(',').ToList();
+                    var tempString = course.TeachingAssistants.Split(';').ToList();
                     course.TeachingAssistants = JsonConvert.SerializeObject(tempString);
                     await courseDbContext.Courses.AddAsync(course);
                     await courseDbContext.SaveChangesAsync();

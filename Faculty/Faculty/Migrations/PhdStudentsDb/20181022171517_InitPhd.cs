@@ -2,7 +2,7 @@
 
 namespace Faculty.Migrations.PhdStudentsDb
 {
-    public partial class InitialPhdMigration : Migration
+    public partial class InitPhd : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -16,6 +16,7 @@ namespace Faculty.Migrations.PhdStudentsDb
                     StudentName = table.Column<string>(nullable: true),
                     ThesisTitle = table.Column<string>(nullable: true),
                     DegreeStatus = table.Column<string>(nullable: true),
+                    DegreeCompletion = table.Column<string>(nullable: true),
                     College = table.Column<string>(nullable: true)
                 },
                 constraints: table =>

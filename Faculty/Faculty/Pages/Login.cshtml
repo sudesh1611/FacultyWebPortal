@@ -1,7 +1,11 @@
 ﻿@page
 @model Faculty.Pages.LoginModel
 @{
+    Layout = "MainLayout";
     ViewData["Title"] = "Login";
+    ViewData["Name"] = Model.CurrentProfile.FullName;
+    ViewData["Department"] = Model.CurrentProfile.Department;
+    ViewData["College"] = Model.CurrentProfile.College;
 }
 
 <h1 class="text-center" style="font-family:'Comic Sans MS';">Log In</h1>

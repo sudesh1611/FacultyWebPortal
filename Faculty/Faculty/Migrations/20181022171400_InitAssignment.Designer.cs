@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Faculty.Migrations.AssignmentDb
+namespace Faculty.Migrations
 {
     [DbContext(typeof(AssignmentDbContext))]
-    [Migration("20181020110713_InitialAssignmentMigration")]
-    partial class InitialAssignmentMigration
+    [Migration("20181022171400_InitAssignment")]
+    partial class InitAssignment
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

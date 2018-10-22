@@ -15,6 +15,7 @@ namespace Faculty.Pages
     {
         private readonly PhdStudentsDbContext phdStudentsDbContext;
         private readonly ProfileDbContext profileDbContext;
+        public Profile CurrentProfile { set; get; }
 
         [BindProperty]
         public PhdStudents Student { get; set; }
@@ -23,11 +24,13 @@ namespace Faculty.Pages
         {
             phdStudentsDbContext = phd;
             profileDbContext = prdb;
+            CurrentProfile = new Profile();
         }
 
         public async Task<IActionResult> OnGetAsync()
         {
-            if(!User.Identity.IsAuthenticated)
+            CurrentProfile = await profileDbContext.Profiles.SingleOrDefaultAsync(m => m.ID == 1);
+            if (!User.Identity.IsAuthenticated)
             {
                 return RedirectToPage("/Error");
             }

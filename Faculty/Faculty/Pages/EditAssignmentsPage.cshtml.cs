@@ -14,12 +14,16 @@ namespace Faculty.Pages
     public class EditAssignmentsPageModel : PageModel
     {
         private readonly AssignmentDbContext assignmentDbContext;
+        private readonly ProfileDbContext profileDbContext;
+        public Profile CurrentProfile { set; get; }
 
-        public EditAssignmentsPageModel(AssignmentDbContext asd)
+        public EditAssignmentsPageModel(AssignmentDbContext asd, ProfileDbContext pDb)
         {
             assignmentDbContext = asd;
             OldAssignmentsList = new List<Assignment>();
             OngoingAssignmentsList = new List<Assignment>();
+            profileDbContext = pDb;
+            CurrentProfile = new Profile();
         }
 
         public List<Assignment> OldAssignmentsList { get; set; }
@@ -27,6 +31,7 @@ namespace Faculty.Pages
 
         public async Task OnGetAsync()
         {
+            CurrentProfile = await profileDbContext.Profiles.SingleOrDefaultAsync(m => m.ID == 1);
             if (User.Identity.IsAuthenticated)
             {
                 var AssignmentsList = await assignmentDbContext.Assignments.ToListAsync();

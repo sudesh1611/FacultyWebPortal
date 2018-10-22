@@ -2,7 +2,7 @@
 
 namespace Faculty.Migrations.CourseDb
 {
-    public partial class InitialCourseMigration : Migration
+    public partial class InitCourse : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -20,7 +20,8 @@ namespace Faculty.Migrations.CourseDb
                     Instructor = table.Column<string>(nullable: true),
                     CourseDescription = table.Column<string>(nullable: true),
                     TeachingAssistants = table.Column<string>(nullable: true),
-                    LecturesTiming = table.Column<string>(nullable: true)
+                    LecturesTiming = table.Column<string>(nullable: true),
+                    ExamInstructions = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

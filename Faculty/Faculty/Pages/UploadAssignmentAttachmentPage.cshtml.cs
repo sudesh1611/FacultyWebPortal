@@ -14,19 +14,24 @@ namespace Faculty.Pages
     public class UploadAssignmentAttachmentPageModel : PageModel
     {
         private readonly AssignmentDbContext assignmentDbContext;
+        private readonly ProfileDbContext profileDbContext;
         public Assignment CurrentAssignment { set; get; }
+        public Profile CurrentProfile { set; get; }
 
-        public UploadAssignmentAttachmentPageModel(AssignmentDbContext adb)
+        public UploadAssignmentAttachmentPageModel(AssignmentDbContext adb, ProfileDbContext pDbContext)
         {
             assignmentDbContext = adb;
             CurrentAssignment = new Assignment();
             CurrentAssignment = adb.Assignments.Last();
+            profileDbContext = pDbContext;
+            CurrentProfile = new Profile();
         }
 
 
         public async Task OnGetAsync()
         {
-            if(User.Identity.IsAuthenticated)
+            CurrentProfile = await profileDbContext.Profiles.SingleOrDefaultAsync(m => m.ID == 1);
+            if (User.Identity.IsAuthenticated)
             {
                 CurrentAssignment = await assignmentDbContext.Assignments.LastOrDefaultAsync();
                 var newAssignment = CurrentAssignment;

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Faculty.Data;
+using Faculty.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
@@ -16,10 +17,14 @@ namespace Faculty.Pages
     public class LoginModel : PageModel
     {
         private readonly UserDbContext userDbContext;
+        private readonly ProfileDbContext profileDbContext;
+        public Profile CurrentProfile { set; get; }
 
-        public LoginModel(UserDbContext pdc)
+        public LoginModel(UserDbContext pdc,ProfileDbContext pdp)
         {
             userDbContext = pdc;
+            profileDbContext = pdp;
+            CurrentProfile = new Profile();
         }
 
         public class InputModel
@@ -37,6 +42,7 @@ namespace Faculty.Pages
         public async Task OnGetAsync()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            CurrentProfile = await profileDbContext.Profiles.SingleOrDefaultAsync(m => m.ID == 1);
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -65,7 +71,7 @@ namespace Faculty.Pages
                                 CookieAuthenticationDefaults.AuthenticationScheme,
                                 new ClaimsPrincipal(claimsIdentity),
                                 authProperties);
-                        return RedirectToPage("/EditProfile");
+                        return RedirectToPage("/AdminDashboard");
                     }
                     else
                     {

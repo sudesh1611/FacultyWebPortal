@@ -86,15 +86,19 @@ namespace Faculty.Pages
         [BindProperty]
         public TempProfile MyProfile { set; get; }
 
+        public Profile CurrentProfile { set; get; }
+
         private readonly ProfileDbContext profileDbContext;
 
         public EditProfileModel(ProfileDbContext pDbContext)
         {
             profileDbContext = pDbContext;
+            CurrentProfile = new Profile();
         }
 
         public async Task OnGetAsync()
         {
+            CurrentProfile = await profileDbContext.Profiles.SingleOrDefaultAsync(m => m.ID == 1);
             MyProfile = new TempProfile();
             if (User.Identity.IsAuthenticated)
             {
@@ -127,9 +131,9 @@ namespace Faculty.Pages
                 }
                 if (!String.IsNullOrEmpty(Profile.UnderGraduateDegreeDetails))
                 {
-                    var tempString1 = Profile.UnderGraduateDegreeDetails.Split(',');
-                    var tempString2 = Profile.PostGraduateDegreeDetails.Split(',');
-                    var tempString3 = Profile.DoctoratesDegreeDetails.Split(',');
+                    var tempString1 = Profile.UnderGraduateDegreeDetails.Split(';');
+                    var tempString2 = Profile.PostGraduateDegreeDetails.Split(';');
+                    var tempString3 = Profile.DoctoratesDegreeDetails.Split(';');
                     MyProfile.UGDegree = tempString1[0];
                     MyProfile.UGCollege = tempString1[1];
                     MyProfile.UGCompletionYear = tempString1[2];
@@ -145,7 +149,7 @@ namespace Faculty.Pages
                     MyProfile.AreasOfInterest = String.Empty;
                     for (int i = 0; i <= tempList.Count - 2; i++)
                     {
-                        MyProfile.AreasOfInterest = MyProfile.AreasOfInterest + tempList[i] + ",";
+                        MyProfile.AreasOfInterest = MyProfile.AreasOfInterest + tempList[i] + ";";
                     }
                     MyProfile.AreasOfInterest = MyProfile.AreasOfInterest + tempList[tempList.Count - 1];
                 }
@@ -155,7 +159,7 @@ namespace Faculty.Pages
                     MyProfile.Achievements = String.Empty;
                     for (int i = 0; i <= tempList.Count - 2; i++)
                     {
-                        MyProfile.Achievements = MyProfile.Achievements + tempList[i] + ",";
+                        MyProfile.Achievements = MyProfile.Achievements + tempList[i] + ";";
                     }
                     MyProfile.Achievements = MyProfile.Achievements + tempList[tempList.Count - 1];
                 }
@@ -171,11 +175,11 @@ namespace Faculty.Pages
                     string emaiID = User.FindFirst(ClaimTypes.Email).Value;
                     var Profile = await profileDbContext.Profiles.SingleOrDefaultAsync(m => m.LoginEmailID == emaiID);
                     Profile.EmailID = MyProfile.EmailID.ToLower();
-                    Profile.UnderGraduateDegreeDetails = MyProfile.UGDegree + "," + MyProfile.UGCollege + "," + MyProfile.UGCompletionYear;
-                    Profile.PostGraduateDegreeDetails = MyProfile.PGDegree + "," + MyProfile.PGCollege + "," + MyProfile.PGCompletionYear;
-                    Profile.DoctoratesDegreeDetails = MyProfile.PhDCollege + "," + MyProfile.PhDCompletionYear;
+                    Profile.UnderGraduateDegreeDetails = MyProfile.UGDegree + ";" + MyProfile.UGCollege + ";" + MyProfile.UGCompletionYear;
+                    Profile.PostGraduateDegreeDetails = MyProfile.PGDegree + ";" + MyProfile.PGCollege + ";" + MyProfile.PGCompletionYear;
+                    Profile.DoctoratesDegreeDetails = MyProfile.PhDCollege + ";" + MyProfile.PhDCompletionYear;
 
-                    List<string> tempString = MyProfile.AreasOfInterest.Split(',').ToList();
+                    List<string> tempString = MyProfile.AreasOfInterest.Split(';').ToList();
                     Profile.AreasOfInterest = JsonConvert.SerializeObject(tempString);
 
                     tempString = MyProfile.Achievements.Split(',').ToList();

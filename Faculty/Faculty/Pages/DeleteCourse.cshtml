@@ -1,7 +1,11 @@
 ﻿@page
 @model Faculty.Pages.DeleteCourseModel
 @{
-    ViewData["Title"] = "Delete Course";
+    Layout = "AdminLayout";
+    ViewData["Title"] = "Admin Dashboard";
+    ViewData["Name"] = Model.CurrentProfile.FullName;
+    ViewData["Department"] = Model.CurrentProfile.Department;
+    ViewData["College"] = Model.CurrentProfile.College;
 }
 
 <h1 class="text-center" style="font-family:'Comic Sans MS';">Delete Course</h1>
@@ -51,7 +55,7 @@
     </div>
     <div class="row">
         <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 form-group">
-            <label asp-for="course.TeachingAssistants">Course TeachingAssistants(seprated by comma):</label>
+            <label asp-for="course.TeachingAssistants">Course TeachingAssistants(seprated by semicolon ; ):</label>
             <input type="text" class="form-control" asp-for="course.TeachingAssistants" style="background-color:#ecf0f1;" disabled />
             <span asp-validation-for="course.TeachingAssistants" class="text-danger"></span>
         </div>

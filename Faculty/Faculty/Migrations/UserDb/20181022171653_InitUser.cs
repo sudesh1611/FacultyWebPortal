@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Faculty.Migrations
+namespace Faculty.Migrations.UserDb
 {
-    public partial class FirstUserMigration : Migration
+    public partial class InitUser : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Faculty.Migrations.CourseDb
+namespace Faculty.Migrations.PhdStudentsDb
 {
-    [DbContext(typeof(CourseDbContext))]
-    [Migration("20181019074130_InitialCourseMigration")]
-    partial class InitialCourseMigration
+    [DbContext(typeof(PhdStudentsDbContext))]
+    [Migration("20181022171517_InitPhd")]
+    partial class InitPhd
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -17,32 +17,26 @@ namespace Faculty.Migrations.CourseDb
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.1.4-rtm-31024");
 
-            modelBuilder.Entity("Faculty.Models.Course", b =>
+            modelBuilder.Entity("Faculty.Models.PhdStudents", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("CourseCode");
+                    b.Property<string>("College");
 
-                    b.Property<string>("CourseDescription");
+                    b.Property<string>("DegreeCompletion");
 
-                    b.Property<string>("CourseSemester");
+                    b.Property<string>("DegreeStatus");
 
-                    b.Property<string>("CourseTitle");
-
-                    b.Property<string>("CourseYear");
-
-                    b.Property<string>("Instructor");
-
-                    b.Property<string>("LecturesTiming");
+                    b.Property<string>("StudentName");
 
                     b.Property<int>("SupervisorID");
 
-                    b.Property<string>("TeachingAssistants");
+                    b.Property<string>("ThesisTitle");
 
                     b.HasKey("ID");
 
-                    b.ToTable("Courses");
+                    b.ToTable("PhdStudents");
                 });
 #pragma warning restore 612, 618
         }

@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Faculty.Migrations
+namespace Faculty.Migrations.SubmissionDb
 {
-    [DbContext(typeof(UserDbContext))]
-    [Migration("20181018092448_FirstUserMigration")]
-    partial class FirstUserMigration
+    [DbContext(typeof(SubmissionDbContext))]
+    [Migration("20181022171618_InitSubmission")]
+    partial class InitSubmission
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -17,26 +17,20 @@ namespace Faculty.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.1.4-rtm-31024");
 
-            modelBuilder.Entity("Faculty.Models.User", b =>
+            modelBuilder.Entity("Faculty.Models.Submission", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("ConfirmPassword")
-                        .IsRequired();
+                    b.Property<int>("AssignmentID");
 
-                    b.Property<string>("EmailID")
-                        .IsRequired();
+                    b.Property<string>("DateTime");
 
-                    b.Property<string>("FullName")
-                        .IsRequired();
-
-                    b.Property<string>("Password")
-                        .IsRequired();
+                    b.Property<string>("SubmissionLink");
 
                     b.HasKey("ID");
 
-                    b.ToTable("Users");
+                    b.ToTable("Submissions");
                 });
 #pragma warning restore 612, 618
         }

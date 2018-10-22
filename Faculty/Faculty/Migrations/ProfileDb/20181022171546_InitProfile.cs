@@ -2,7 +2,7 @@
 
 namespace Faculty.Migrations.ProfileDb
 {
-    public partial class FirstProfileMigration : Migration
+    public partial class InitProfile : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

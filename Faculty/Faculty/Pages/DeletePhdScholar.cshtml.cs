@@ -13,6 +13,8 @@ namespace Faculty.Pages
     public class DeletePhdScholarModel : PageModel
     {
         private readonly PhdStudentsDbContext phdStudentsDbContext;
+        private readonly ProfileDbContext profileDbContext;
+        public Profile CurrentProfile { set; get; }
 
         [BindProperty]
         public PhdStudents Student { get; set; }
@@ -20,13 +22,16 @@ namespace Faculty.Pages
         [TempData]
         public int ID { set; get; }
 
-        public DeletePhdScholarModel(PhdStudentsDbContext phd)
+        public DeletePhdScholarModel(PhdStudentsDbContext phd, ProfileDbContext pDb)
         {
             phdStudentsDbContext = phd;
+            profileDbContext = pDb;
+            CurrentProfile = new Profile();
         }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            CurrentProfile = await profileDbContext.Profiles.SingleOrDefaultAsync(m => m.ID == 1);
             ID = (int)id;
             if (User.Identity.IsAuthenticated)
             {

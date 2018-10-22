@@ -13,20 +13,25 @@ namespace Faculty.Pages
     public class EditAssignmentDeadlineModel : PageModel
     {
         private readonly AssignmentDbContext assignmentDbContext;
+        private readonly ProfileDbContext profileDbContext;
+        public Profile CurrentProfile { set; get; }
 
         [BindProperty]
         public Assignment newAssignment { get; set; }
 
         public int ID { set; get; }
 
-        public EditAssignmentDeadlineModel(AssignmentDbContext phd)
+        public EditAssignmentDeadlineModel(AssignmentDbContext phd, ProfileDbContext pDb)
         {
             assignmentDbContext = phd;
             newAssignment = new Assignment();
+            profileDbContext = pDb;
+            CurrentProfile = new Profile();
         }
 
         public async Task OnGetAsync(int? id)
         {
+            CurrentProfile = await profileDbContext.Profiles.SingleOrDefaultAsync(m => m.ID == 1);
             ID = (int)id;
             if (User.Identity.IsAuthenticated)
             {

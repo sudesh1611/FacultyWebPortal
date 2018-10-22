@@ -2,7 +2,7 @@
 
 namespace Faculty.Migrations.SubmissionDb
 {
-    public partial class InitalSubmissionMigration : Migration
+    public partial class InitSubmission : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
