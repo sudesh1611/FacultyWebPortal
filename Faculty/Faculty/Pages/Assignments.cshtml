@@ -1,0 +1,87 @@
+﻿@page
+@model Faculty.Pages.AssignmentsModel
+@{
+    Layout = "CourseLayout";
+    ViewData["Title"] = Model.CurrentCourse.CourseCode + ": " + Model.CurrentCourse.CourseTitle;
+    ViewData["SemesterYear"] = Model.CurrentCourse.CourseSemester + " Semester " + Model.CurrentCourse.CourseYear;
+}
+<div class="row">
+    <div class="col-sm-3 col-md-2 sidebar">
+        <ul class="nav nav-sidebar">
+            <li><a asp-page="/Course" asp-route-id="@Model.CurrentCourse.ID">Introduction</a></li>
+            <li><a asp-page="/Resources" asp-route-id="@Model.CurrentCourse.ID">Resources</a></li>
+            <li class="active"><a asp-page="/Assignments" asp-route-id="@Model.CurrentCourse.ID">Assignments</a></li>
+            <li><a asp-page="/Exams" asp-route-id="@Model.CurrentCourse.ID">Exams</a></li>
+        </ul>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <ul class="nav nav-sidebar">
+            <li><a asp-page="/AllCourses">Other Courses</a></li>
+            <li><a asp-page="/Index">Go to Home Page</a></li>
+        </ul>
+    </div>
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+        <div style="text-align:center;font-size:x-large;width:100%;">@(Model.CurrentCourse.CourseCode + " " + Model.CurrentCourse.CourseSemester + " " + Model.CurrentCourse.CourseYear) <br>Assignments</div>
+
+        <br /><br /><br />
+        <div style="text-align:center;font-size:15px;width:100%;">Pending Assignments</div>
+
+        <p>
+            <table style="margin-left:auto; margin-right:auto;">
+                <thead style="background: #fc9;">
+                    <tr>
+                        <th>Date</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.PendingAssignments)
+                    {
+                        <tr>
+                            <td style="vertical-align:middle;padding: 10px;padding-right:20px;">@(item.DeadlineDay.ToString() + " / " + item.DeadLineMonth.ToString() + " / " + item.DeadlineYear.ToString())
+                            <td>
+                                <span style="font-style: italic;"><a asp-page="/ViewAssignment" asp-route-id="@item.ID">@item.AssignmentTitle</a></span>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </p>
+
+        <br /><br /><br />
+        <div style="text-align:center;font-size:15px;width:100%;">Old Assignments</div>
+
+        <p>
+
+            <table style="margin-left:auto; margin-right:auto;">
+                <thead style="background: #fc9;">
+                    <tr>
+                        <th>Date</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.OldAssignments)
+                    {
+                        <tr>
+                            <td style="vertical-align:middle;padding: 10px;padding-right:20px;">@(item.DeadlineDay.ToString() + " / " + item.DeadLineMonth.ToString() + " / " + item.DeadlineYear.ToString())
+                            <td>
+                                <span style="font-style: italic;"><a asp-page="/ViewAssignment" asp-route-id="@item.ID">@item.AssignmentTitle</a></span>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </p>
+
+    </div>
+
+</div>

@@ -1,33 +1,71 @@
 ﻿@page
 @model Faculty.Pages.SubmitAssignmentModel
 @{
-    ViewData["Title"] = "Submit Assignment";
+    Layout = "CourseLayout";
+    ViewData["Title"] = Model.CurrentCourse.CourseCode + ": " + Model.CurrentCourse.CourseTitle;
+    ViewData["SemesterYear"] = Model.CurrentCourse.CourseSemester + " Semester " + Model.CurrentCourse.CourseYear;
 }
 
-<h1 class="text-center" style="font-family:'Comic Sans MS';">Submit Assignment</h1>
-<hr />
-<br />
-<div class="row text-center">
-    <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12 col-lg-offset-3 col-md-offset-3 text-center">
-        <button type="button" class="btn btn-sm" data-toggle="modal" data-target="#myModal2">Upload Assignment</button>
-        <div class="modal fade" id="myModal2" role="dialog" style="background-color:#ecf0f1;">
-            <div class="modal-dialog" style="background-color:#ecf0f1;">
-                <div class="modal-content" style="background-color:#ecf0f1;">
-                    <div class="modal-header" style="background-color:#ecf0f1;">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Upload Assignment</h4>
-                    </div>
-                    <div class="modal-body" style="background-color:#ecf0f1;">
-                        <form asp-page="/UploadAssignment" method="post" enctype="multipart/form-data" class="form-inline">
-                            <input type="file" name="file" class="btn btn-sm" />
-                            <button type="submit" class="btn btn-sm">Upload</button>
-                        </form>
-                    </div>
+<div class="row">
+    <div class="col-sm-3 col-md-2 sidebar">
+        <ul class="nav nav-sidebar">
+            <li><a asp-page="/Course" asp-route-id="@Model.CurrentCourse.ID">Introduction</a></li>
+            <li><a asp-page="/Resources" asp-route-id="@Model.CurrentCourse.ID">Resources</a></li>
+            <li class="active"><a asp-page="/Assignments" asp-route-id="@Model.CurrentCourse.ID">Assignments</a></li>
+            <li><a asp-page="/Exams" asp-route-id="@Model.CurrentCourse.ID">Exams</a></li>
+        </ul>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <ul class="nav nav-sidebar">
+            <li><a asp-page="/AllCourses">Other Courses</a></li>
+            <li><a asp-page="/Index">Go to Home Page</a></li>
+        </ul>
+    </div>
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
+        <div style="text-align:center;font-size:x-large;width:100%;">@(Model.CurrentCourse.CourseCode + " " + Model.CurrentCourse.CourseSemester + " " + Model.CurrentCourse.CourseYear) <br>Submission</div>
+
+        <br /><br /><br />
+        <div style="text-align:center;font-size:16px;width:100%;"><strong style="font-size:20px;">Problem: </strong>@(Model.CurrentAssignment.AssignmentTitle + " Submission")</div>
+        <br />
+        <br />
+
+        <div class="row text-center">
+            <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12 col-lg-offset-3 col-md-offset-3 text-center">
+                <button type="button" class="btn btn-sm" data-toggle="modal" data-target="#myModal2">Upload Assignment</button>
+                <br />
+
+                <div class="modal fade" id="myModal2" role="dialog" style="background-color:#ecf0f1;">
+                    <div class="modal-dialog" style="background-color:#ecf0f1;">
+                        <div class="modal-content" style="background-color:#ecf0f1;">
+                            <div class="modal-header" style="background-color:#ecf0f1;">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Upload Assignment</h4>
+                            </div>
+                            <div class="modal-body" style="background-color:#ecf0f1;">
+                                <form asp-page="/UploadAssignment" method="post" enctype="multipart/form-data" class="form-inline">
+                                    <input type="file" name="file" class="btn btn-sm" />
+                                    <button type="submit" class="btn btn-sm">Upload</button>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <p>
+            *Note: Name of the file should be your roll number or registration number.
+        </p>
     </div>
 </div>
-<br />
-<br />

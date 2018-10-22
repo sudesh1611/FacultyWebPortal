@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Faculty.Data;
+using Faculty.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -39,6 +40,7 @@ namespace Faculty
                 .AddCookie();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.Configure<Assignment>(Configuration);
             services.AddDbContext<UserDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDbContext<ProfileDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDbContext<PhdStudentsDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));

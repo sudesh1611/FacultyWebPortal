@@ -1,0 +1,48 @@
+﻿@page
+@model Faculty.Pages.ViewAssignmentModel
+@{
+    Layout = "CourseLayout";
+    ViewData["Title"] = Model.CurrentCourse.CourseCode + ": " + Model.CurrentCourse.CourseTitle;
+    ViewData["SemesterYear"] = Model.CurrentCourse.CourseSemester + " Semester " + Model.CurrentCourse.CourseYear;
+}
+
+<div class="row">
+    <div class="col-sm-3 col-md-2 sidebar">
+        <ul class="nav nav-sidebar">
+            <li><a asp-page="/Course" asp-route-id="@Model.CurrentCourse.ID">Introduction</a></li>
+            <li><a asp-page="/Resources" asp-route-id="@Model.CurrentCourse.ID">Resources</a></li>
+            <li class="active"><a asp-page="/Assignments" asp-route-id="@Model.CurrentCourse.ID">Assignments</a></li>
+            <li><a asp-page="/Exams" asp-route-id="@Model.CurrentCourse.ID">Exams</a></li>
+        </ul>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <ul class="nav nav-sidebar">
+            <li><a asp-page="/AllCourses">Other Courses</a></li>
+            <li><a asp-page="/Index">Go to Home Page</a></li>
+        </ul>
+    </div>
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+        <div style="text-align:center;font-size:x-large;width:100%;">@(Model.CurrentCourse.CourseCode + " " + Model.CurrentCourse.CourseSemester + " " + Model.CurrentCourse.CourseYear) <br>Assignments</div>
+
+        <br /><br /><br />
+        <div style="font-size:15px;width:100%;"><strong style="font-size:16px;">Title: </strong>@(Model.CurrentAssignment.AssignmentTitle)</div>
+        <br />
+        <p style="font-size:15px;width:100%;" class="text-justify"><strong style="font-size:16px;">Description: </strong>@(Model.CurrentAssignment.AssignmentDescription)</p>
+        <br />
+        <p style="font-size:15px;width:100%;" class="text-justify"><strong style="font-size:16px;">Attachments: </strong><a href="@Model.CurrentAssignment.AttachmentFulLink" target="_blank">Click here to view attachment</a></p>
+        <br />
+        <p style="font-size:15px;width:100%;" class="text-justify"><strong style="font-size:16px;">Due Date: </strong>@(Model.CurrentAssignment.DeadlineDay.ToString() + " / " + Model.CurrentAssignment.DeadLineMonth.ToString() + " / " + Model.CurrentAssignment.DeadlineYear.ToString() + " - " + Model.CurrentAssignment.DeadlineTime)</p>
+        @if (Model.IfDue)
+        {
+            <p style="font-size:15px;width:100%;" class="text-justify"><strong style="font-size:16px;">Submission Link: </strong><a asp-page="/SubmitAssignment" asp-route-id="@Model.CurrentAssignment.ID">Click here to submit your solution</a></p>
+        }
+    </div>
+</div>
+

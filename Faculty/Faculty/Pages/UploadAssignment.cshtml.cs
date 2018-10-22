@@ -8,6 +8,7 @@ using Faculty.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Options;
 
 namespace Faculty.Pages
 {
@@ -16,20 +17,20 @@ namespace Faculty.Pages
         private readonly SubmissionDbContext submissionDbContext;
         private readonly AssignmentDbContext assignmentDbContext;
 
-        [TempData]
-        public int CourseID { get; set; }
+        private Assignment GlobalAssignment { get; set; }
 
-        public UploadAssignmentModel(SubmissionDbContext sdb,AssignmentDbContext asb)
+        public UploadAssignmentModel(SubmissionDbContext sdb,AssignmentDbContext asb, IOptions<Assignment> globalAssignment)
         {
             submissionDbContext = sdb;
             assignmentDbContext = asb;
+            GlobalAssignment = globalAssignment.Value;
         }
 
         public async Task<IActionResult> OnPostAsync(IFormFile file)
         {
             if (file == null || file.Length == 0)
                 return Content("file not selected");
-            int ID = CourseID;
+            int ID = GlobalAssignment.ID;
             if(ID<1)
             {
                 return RedirectToPage("/Error");
@@ -40,6 +41,7 @@ namespace Faculty.Pages
 
             if(System.IO.File.Exists(path))
             {
+                //ToDo Make A new Page
                 return Content("File already exists. Change the file name");
             }
 
@@ -57,7 +59,7 @@ namespace Faculty.Pages
             };
             await submissionDbContext.Submissions.AddAsync(newSubmission);
             await submissionDbContext.SaveChangesAsync();
-            return RedirectToPage("/UploadAssignmentAttachmentPage");
+            return RedirectToPage("/SubmissionSuccessful");
         }
     }
 }

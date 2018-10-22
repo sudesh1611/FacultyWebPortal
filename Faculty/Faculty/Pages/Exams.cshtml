@@ -1,0 +1,37 @@
+﻿@page
+@model Faculty.Pages.ExamsModel
+@{
+    Layout = "CourseLayout";
+    ViewData["Title"] = Model.CurrentCourse.CourseCode + ": " + Model.CurrentCourse.CourseTitle;
+    ViewData["SemesterYear"] = Model.CurrentCourse.CourseSemester + " Semester " + Model.CurrentCourse.CourseYear;
+}
+
+<div class="row">
+    <div class="col-sm-3 col-md-2 sidebar">
+        <ul class="nav nav-sidebar">
+            <li><a asp-page="/Course" asp-route-id="@Model.CurrentCourse.ID">Introduction</a></li>
+            <li><a asp-page="/Resources" asp-route-id="@Model.CurrentCourse.ID">Resources</a></li>
+            <li><a asp-page="/Assignments" asp-route-id="@Model.CurrentCourse.ID">Assignments</a></li>
+            <li class="active"><a asp-page="/Exams" asp-route-id="@Model.CurrentCourse.ID">Exams</a></li>
+        </ul>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <ul class="nav nav-sidebar">
+            <li><a asp-page="/AllCourses">Other Courses</a></li>
+            <li><a asp-page="/Index">Go to Home Page</a></li>
+        </ul>
+    </div>
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <h2 class="page-header">Exam Information</h2>
+        <p>
+            @Model.CurrentCourse.ExamInstructions
+        </p>
+    </div>
+
+</div>

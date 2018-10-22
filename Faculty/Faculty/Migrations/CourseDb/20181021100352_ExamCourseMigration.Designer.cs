@@ -2,14 +2,16 @@
 using Faculty.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Faculty.Migrations.CourseDb
 {
     [DbContext(typeof(CourseDbContext))]
-    partial class CourseDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181021100352_ExamCourseMigration")]
+    partial class ExamCourseMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

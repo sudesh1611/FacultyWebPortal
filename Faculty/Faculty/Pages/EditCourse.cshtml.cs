@@ -65,6 +65,7 @@ namespace Faculty.Pages
                     tempUser.CourseYear = course.CourseYear;
                     tempUser.Instructor = course.Instructor;
                     tempUser.LecturesTiming = course.LecturesTiming;
+                    tempUser.ExamInstructions = course.ExamInstructions;
                     var tempString = course.TeachingAssistants.Split(',').ToList();
                     tempUser.TeachingAssistants = JsonConvert.SerializeObject(tempString);
                     courseDbContext.Courses.Update(tempUser);

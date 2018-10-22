@@ -26,5 +26,7 @@ namespace Faculty.Models
         public string TeachingAssistants { get; set; }
 
         public string LecturesTiming { get; set; }
+        
+        public string ExamInstructions { get; set; }
     }
 }

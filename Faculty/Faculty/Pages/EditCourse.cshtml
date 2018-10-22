@@ -73,8 +73,15 @@
     <div class="row">
         <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 form-group" hidden>
             <label asp-for="course.ID">Course Description/Objectives:</label>
-            <input type="text" class="form-control" asp-for="course.ID" style="background-color:#ecf0f1;"/>
+            <input type="text" class="form-control" asp-for="course.ID" style="background-color:#ecf0f1;" />
             <span asp-validation-for="course.ID" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 form-group">
+            <label asp-for="course.ExamInstructions">Exam Instructions (If any):</label>
+            <textarea rows="3" type="text" class="form-control" asp-for="course.ExamInstructions" style="background-color:#ecf0f1;" required></textarea>
+            <span asp-validation-for="course.ExamInstructions" class="text-danger"></span>
         </div>
     </div>
     <br />

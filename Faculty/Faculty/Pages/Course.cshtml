@@ -1,0 +1,71 @@
+﻿@page
+@model Faculty.Pages.CourseModel
+@{
+    Layout = "CourseLayout";
+    ViewData["Title"] = Model.CurrentCourse.CourseCode + ": " + Model.CurrentCourse.CourseTitle;
+    ViewData["SemesterYear"] = Model.CurrentCourse.CourseSemester + " Semester " + Model.CurrentCourse.CourseYear;
+}
+
+<div class="row">
+    <div class="col-sm-3 col-md-2 sidebar">
+        <ul class="nav nav-sidebar">
+            <li class="active"><a asp-page="/Course" asp-route-id="@Model.CurrentCourse.ID">Introduction</a></li>
+            <li><a asp-page="/Resources" asp-route-id="@Model.CurrentCourse.ID">Resources</a></li>
+            <li><a asp-page="/Assignments" asp-route-id="@Model.CurrentCourse.ID">Assignments</a></li>
+            <li><a asp-page="/Exams" asp-route-id="@Model.CurrentCourse.ID">Exams</a></li>
+        </ul>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <ul class="nav nav-sidebar">
+            <li><a asp-page="/AllCourses">Other Courses</a></li>
+            <li><a asp-page="/Index">Go to Home Page</a></li>
+        </ul>
+    </div>
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <h2 class="page-header">Welcome to @Model.CurrentCourse.CourseCode!</h2>
+        <p>
+            @Model.CurrentCourse.CourseDescription
+        </p>
+        <h2 class="sub-header" style="padding-top: 20px;">
+            Administrative
+            Information
+        </h2>
+        <p><b>Instructor:</b> @Model.CurrentCourse.Instructor</p>
+        <p>
+            <b>Teaching Assistants:</b>
+            <table style="margin-top: -10px;">
+                @foreach (var item in Model.TAs)
+                {
+                    <tr>
+                        <td style="padding: 2px 10px;">@item</td>
+                    </tr>
+                }
+
+            </table>
+        </p>
+        <p>
+            <b>Lectures:</b>
+            @Model.CurrentCourse.LecturesTiming<br>
+        </p>
+        <p>
+            <b>Contact:</b><br>
+            For grading or other private matters, please send email directly
+            to the instructor.
+                           <address>
+
+                               <strong>@Model.CurrentProfile.FullName</strong><br />
+                               @Model.CurrentProfile.Designation,@Model.CurrentProfile.Department<br />
+                               @Model.CurrentProfile.College<br />  
+                               <a href="mailto:@Model.CurrentProfile.EmailID">@Model.CurrentProfile.EmailID</a>
+                           </address>
+        </p>
+    </div>
+
+</div>
+
