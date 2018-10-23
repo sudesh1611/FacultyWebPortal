@@ -8,97 +8,125 @@
     ViewData["College"] = Model.CurrentProfile.College;
 }
 
-<h1 class="text-center" style="font-family:'Comic Sans MS';">Edit Course</h1>
-<hr />
-<br />
-<form method="post">
-    <div class="row">
-        <div asp-validation-summary="ModelOnly" class="col-lg-4 col-md-4 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 text-danger"></div>
-    </div>
-    <div class="row">
-        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 form-group">
-            <label asp-for="course.CourseCode">Course Code:</label>
-            <input type="text" class="form-control" asp-for="course.CourseCode" style="background-color:#ecf0f1;text-transform:uppercase;" required />
-            <span asp-validation-for="course.CourseCode" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 form-group">
-            <label asp-for="course.CourseTitle">Course Title:</label>
-            <input type="text" class="form-control" asp-for="course.CourseTitle" style="background-color:#ecf0f1;" required />
-            <span asp-validation-for="course.CourseTitle" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 form-group">
-            <label asp-for="course.CourseSemester">Course Semester (Odd/Even):</label>
-            <select class="form-control" asp-for="course.CourseSemester" style="background-color:#ecf0f1;">
-                <option value="Odd">Odd Semester</option>
-                <option value="Even">Even Semester</option>
-            </select>
-            <span asp-validation-for="course.CourseSemester" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 form-group">
-            <label asp-for="course.CourseYear">Year:</label>
-            <input type="text" class="form-control" asp-for="course.CourseYear" value="@DateTime.Now.Year.ToString()" style="background-color:#ecf0f1;" />
-            <span asp-validation-for="course.CourseYear" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 form-group">
-            <label asp-for="course.Instructor">Course Instructor:</label>
-            <input type="text" class="form-control" asp-for="course.Instructor" style="background-color:#ecf0f1;" required />
-            <span asp-validation-for="course.Instructor" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 form-group">
-            <label asp-for="course.TeachingAssistants">Course TeachingAssistants(seprated by semicolon ; ):</label>
-            <input type="text" class="form-control" asp-for="course.TeachingAssistants" style="background-color:#ecf0f1;" required />
-            <span asp-validation-for="course.TeachingAssistants" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 form-group">
-            <label asp-for="course.LecturesTiming">Lecture Timings:</label>
-            <input type="text" class="form-control" asp-for="course.LecturesTiming" style="background-color:#ecf0f1;" required />
-            <span asp-validation-for="course.LecturesTiming" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 form-group">
-            <label asp-for="course.CourseDescription">Course Description/Objectives:</label>
-            <textarea rows="5" type="text" class="form-control" asp-for="course.CourseDescription" style="background-color:#ecf0f1;" required></textarea>
-            <span asp-validation-for="course.CourseDescription" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 form-group" hidden>
-            <label asp-for="course.ID">Course Description/Objectives:</label>
-            <input type="text" class="form-control" asp-for="course.ID" style="background-color:#ecf0f1;" />
-            <span asp-validation-for="course.ID" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 form-group">
-            <label asp-for="course.ExamInstructions">Exam Instructions (If any):</label>
-            <textarea rows="3" type="text" class="form-control" asp-for="course.ExamInstructions" style="background-color:#ecf0f1;" required></textarea>
-            <span asp-validation-for="course.ExamInstructions" class="text-danger"></span>
-        </div>
-    </div>
+@if (User.Identity.IsAuthenticated)
+{
+    <h2 class="text-center" style="font-family:'Comic Sans MS';">Edit Course</h2>
+    <hr />
     <br />
-    <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-
-            <input type="submit" class="btn " value="Save Changes" style="background-color:#34495e;color:#FFFFFF;" />
-
+    <form method="post">
+        <div class="row">
+            <div asp-validation-summary="ModelOnly" class="col-lg-4 col-md-4 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 text-danger"></div>
         </div>
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 form-group-sm">
+                <label asp-for="course.CourseCode">Course Code:</label>
+                <input type="text" class="form-control" asp-for="course.CourseCode" style="text-transform:uppercase;" required />
+                <span asp-validation-for="course.CourseCode" class="text-danger"></span>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 form-group-sm">
+                <label asp-for="course.CourseTitle">Course Title:</label>
+                <input type="text" class="form-control" asp-for="course.CourseTitle" required />
+                <span asp-validation-for="course.CourseTitle" class="text-danger"></span>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 form-group-sm">
+                <label asp-for="course.CourseSemester">Course Semester (Odd/Even):</label>
+                <select class="form-control" asp-for="course.CourseSemester">
+                    <option value="Odd">Odd Semester</option>
+                    <option value="Even">Even Semester</option>
+                </select>
+                <span asp-validation-for="course.CourseSemester" class="text-danger"></span>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 form-group-sm">
+                <label asp-for="course.CourseYear">Year:</label>
+                <input type="text" class="form-control" asp-for="course.CourseYear" value="@DateTime.Now.Year.ToString()" />
+                <span asp-validation-for="course.CourseYear" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 form-group-sm">
+                <label asp-for="course.Instructor">Course Instructor:</label>
+                <input type="text" class="form-control" asp-for="course.Instructor" required />
+                <span asp-validation-for="course.Instructor" class="text-danger"></span>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 form-group-sm">
+                <label asp-for="course.TeachingAssistants">Course TeachingAssistants(seprated by semicolon ; ):</label>
+                <input type="text" class="form-control" asp-for="course.TeachingAssistants" required />
+                <span asp-validation-for="course.TeachingAssistants" class="text-danger"></span>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 form-group-sm">
+                <label asp-for="course.LecturesTiming">Lecture Timings:</label>
+                <input type="text" class="form-control" asp-for="course.LecturesTiming" required />
+                <span asp-validation-for="course.LecturesTiming" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 form-group">
+                <label asp-for="course.CourseDescription">Course Description/Objectives:</label>
+                <textarea rows="5" type="text" class="form-control" asp-for="course.CourseDescription" required></textarea>
+                <span asp-validation-for="course.CourseDescription" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 form-group-sm" hidden>
+                <label asp-for="course.ID">Course Description/Objectives:</label>
+                <input type="text" class="form-control" asp-for="course.ID" />
+                <span asp-validation-for="course.ID" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 form-group">
+                <label asp-for="course.ExamInstructions">Exam Instructions (If any):</label>
+                <textarea rows="3" type="text" class="form-control" asp-for="course.ExamInstructions" required></textarea>
+                <span asp-validation-for="course.ExamInstructions" class="text-danger"></span>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+
+                <input type="submit" class="btn " value="Save Changes" style="background-color:#34495e;color:#FFFFFF;" />
+
+            </div>
+        </div>
+    </form>
+    <br />
+    <br />
+
+}
+else
+{
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <p class="text-danger text-center">You Can View This Page Only If You Are Logged In.</p>
+    <br />
+    <div class="text-center">
+        <a class="btn btn-default" asp-page="/Login">Login</a>
+
     </div>
-</form>
-<br />
-<br />
+}
 
 @section Scripts {
     @await Html.PartialAsync("_ValidationScriptsPartial")

@@ -29,26 +29,13 @@ namespace Faculty.Pages
             CurrentProfile = new Profile();
         }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task OnGetAsync(int? id)
         {
             CurrentProfile = await profileDbContext.Profiles.SingleOrDefaultAsync(m => m.ID == 1);
             ID = (int)id;
             if (User.Identity.IsAuthenticated)
             {
                 Student = await phdStudentsDbContext.PhdStudents.SingleOrDefaultAsync(m => m.ID == id);
-                if (Student == null)
-                {
-                    return RedirectToPage("/Error");
-                }
-                else
-                {
-                    return Page();
-                }
-
-            }
-            else
-            {
-                return RedirectToPage("/Error");
             }
         }
 

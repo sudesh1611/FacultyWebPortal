@@ -10,7 +10,7 @@
 
 @if (User.Identity.IsAuthenticated)
 {
-    <h1 class="text-center" style="font-family:'Comic Sans MS';">Edit Assignments Page</h1>
+    <h2 class="text-center" style="font-family:'Comic Sans MS';">Edit Assignments Page</h2>
     <hr />
 
     <div class="row">
@@ -20,102 +20,106 @@
     </div>
 
     <br />
-    <br />
     <div class="row">
-        <div class="container">
-            <h3 class="text-left" style="font-family:'Comic Sans MS';">Ongoing Assignments</h3>
-            <br />
-            <table class="table">
+
+        <h4 class="text-left" style="font-family:'Comic Sans MS';">Ongoing Assignments</h4>
+        <table class="table table-condensed table-hover">
+            <tr>
+                <th>S.No.</th>
+                <th>Course Name</th>
+                <th>Assignment Title</th>
+                <th>Deadline</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+            @for (int i = 0; i < Model.OngoingAssignmentsList.Count; i++)
+            {
                 <tr>
-                    <th>S.No.</th>
-                    <th>Course Name</th>
-                    <th>Assignment Title</th>
-                    <th>Deadline</th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
+                    <td>
+                        @(i + 1).
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.OngoingAssignmentsList[i].CourseName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.OngoingAssignmentsList[i].AssignmentTitle)
+                    </td>
+                    <td>
+                        @(Model.OngoingAssignmentsList[i].DeadlineDay.ToString() + "/" + Model.OngoingAssignmentsList[i].DeadLineMonth.ToString() + "/" + Model.OngoingAssignmentsList[i].DeadlineYear.ToString() + " - " + Model.OngoingAssignmentsList[i].DeadlineTime.ToString())
+                    </td>
+                    <td>
+                        <a asp-page="/ViewAssignmentAdmin" asp-route-id="@Model.OngoingAssignmentsList[i].ID">View</a>
+                    </td>
+                    <td>
+                        <a asp-page="/EditAssignmentDeadline" asp-route-id="@Model.OngoingAssignmentsList[i].ID">Edit</a>
+                    </td>
+                    <td>
+                        <a asp-page="/DeleteAssignment" asp-route-id="@Model.OngoingAssignmentsList[i].ID">Delete</a>
+                    </td>
                 </tr>
-                @for (int i = 0; i < Model.OngoingAssignmentsList.Count; i++)
-                {
-                    <tr>
-                        <td>
-                            @(i + 1).
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => Model.OngoingAssignmentsList[i].CourseName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => Model.OngoingAssignmentsList[i].AssignmentTitle)
-                        </td>
-                        <td>
-                            @(Model.OngoingAssignmentsList[i].DeadlineDay.ToString() +"/"+ Model.OngoingAssignmentsList[i].DeadLineMonth.ToString()+"/" + Model.OngoingAssignmentsList[i].DeadlineYear.ToString()+" - " + Model.OngoingAssignmentsList[i].DeadlineTime.ToString())
-                        </td>
-                        <td>
-                            <a asp-page="/ViewAssignmentAdmin" asp-route-id="@Model.OngoingAssignmentsList[i].ID">View</a>
-                        </td>
-                        <td>
-                            <a asp-page="/EditAssignmentDeadline" asp-route-id="@Model.OngoingAssignmentsList[i].ID">Edit</a>
-                        </td>
-                        <td>
-                            <a asp-page="/DeleteAssignment" asp-route-id="@Model.OngoingAssignmentsList[i].ID">Delete</a>
-                        </td>
-                    </tr>
-                }
-            </table>
-        </div>
-        <div class="container">
-            <h3 class="text-left" style="font-family:'Comic Sans MS';">Past Assignments</h3>
-            <br />
-            <table class="table">
+            }
+        </table>
+        <br />
+        <br />
+        <h4 class="text-left" style="font-family:'Comic Sans MS';">Past Assignments</h4>
+
+        <table class="table table-condensed table-hover">
+            <tr>
+                <th>S.No.</th>
+                <th>Course Name</th>
+                <th>Assignment Title</th>
+                <th>Deadline</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+            @for (int i = 0; i < Model.OldAssignmentsList.Count; i++)
+            {
                 <tr>
-                    <th>S.No.</th>
-                    <th>Course Name</th>
-                    <th>Assignment Title</th>
-                    <th>Deadline</th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
+                    <td>
+                        @(i + 1).
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.OldAssignmentsList[i].CourseName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.OldAssignmentsList[i].AssignmentTitle)
+                    </td>
+                    <td>
+                        @(Model.OldAssignmentsList[i].DeadlineDay.ToString() + "/" + Model.OldAssignmentsList[i].DeadLineMonth.ToString() + "/" + Model.OldAssignmentsList[i].DeadlineYear.ToString() + " - " + Model.OldAssignmentsList[i].DeadlineTime.ToString())
+                    </td>
+                    <td>
+                        <a asp-page="/ViewAssignmentAdmin" asp-route-id="@Model.OldAssignmentsList[i].ID">View</a>
+                    </td>
+                    <td>
+                        <a asp-page="/EditAssignment" asp-route-id="@Model.OldAssignmentsList[i].ID">Edit</a>
+                    </td>
+                    <td>
+                        <a asp-page="/DeleteAssignment" asp-route-id="@Model.OldAssignmentsList[i].ID">Delete</a>
+                    </td>
                 </tr>
-                @for (int i = 0; i < Model.OldAssignmentsList.Count; i++)
-                {
-                    <tr>
-                        <td>
-                            @(i + 1).
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => Model.OldAssignmentsList[i].CourseName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => Model.OldAssignmentsList[i].AssignmentTitle)
-                        </td>
-                        <td>
-                            @(Model.OldAssignmentsList[i].DeadlineDay.ToString() + "/" + Model.OldAssignmentsList[i].DeadLineMonth.ToString() + "/" + Model.OldAssignmentsList[i].DeadlineYear.ToString() + " - " + Model.OldAssignmentsList[i].DeadlineTime.ToString())
-                        </td>
-                        <td>
-                            <a asp-page="/ViewAssignmentAdmin" asp-route-id="@Model.OldAssignmentsList[i].ID">View</a>
-                        </td>
-                        <td>
-                            <a asp-page="/EditAssignment" asp-route-id="@Model.OldAssignmentsList[i].ID">Edit</a>
-                        </td>
-                        <td>
-                            <a asp-page="/DeleteAssignment" asp-route-id="@Model.OldAssignmentsList[i].ID">Delete</a>
-                        </td>
-                    </tr>
-                }
-            </table>
-        </div>
+            }
+        </table>
     </div>
 }
 else
 {
-    <h2 class="text-center">Edit Courses</h2>
-    <hr />
     <br />
     <br />
-    <p class="text-danger text-center">You Can Edit This Page Only If You Are Logged In.</p>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <p class="text-danger text-center">You Can View This Page Only If You Are Logged In.</p>
     <br />
     <div class="text-center">
         <a class="btn btn-default" asp-page="/Login">Login</a>
+
     </div>
 }
 

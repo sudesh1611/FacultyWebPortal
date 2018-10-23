@@ -10,7 +10,7 @@
 
 @if (User.Identity.IsAuthenticated)
 {
-    <h1 class="text-center" style="font-family:'Comic Sans MS';">Upload Assignment Attachment</h1>
+    <h2 class="text-center" style="font-family:'Comic Sans MS';">Upload Assignment Attachment</h2>
     <h4 class="text-center" style="font-family:'Comic Sans MS';">(Optional)</h4>
     <hr />
     <br />
@@ -48,13 +48,21 @@
 }
 else
 {
-    <hr />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
     <br />
     <br />
     <p class="text-danger text-center">You Can View This Page Only If You Are Logged In.</p>
     <br />
     <div class="text-center">
         <a class="btn btn-default" asp-page="/Login">Login</a>
+
     </div>
 }
 

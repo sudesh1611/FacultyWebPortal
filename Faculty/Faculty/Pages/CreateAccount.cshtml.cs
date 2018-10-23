@@ -32,7 +32,7 @@ namespace Faculty.Pages
         public async Task<IActionResult> OnGetAsync()
         {
             CurrentProfile = await profileDbContext.Profiles.SingleOrDefaultAsync(m => m.ID == 1);
-            return RedirectToPage("/Index");
+            return RedirectToPage("/NotFound");
         }
 
         public async Task<IActionResult> OnPostAsync()

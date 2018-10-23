@@ -42,6 +42,7 @@ namespace Faculty.Pages
                         CoursesList.Add(item);
                     }
                 }
+                CoursesList.Reverse();
             }
         }
     }

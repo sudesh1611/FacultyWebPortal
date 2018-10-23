@@ -33,7 +33,7 @@ namespace Faculty.Pages
             TAs = new List<string>();
         }
 
-        public async Task OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
             int ID = (int)id;
             CurrentCourse = await courseDbContext.Courses.SingleOrDefaultAsync(m => m.ID == ID);
@@ -49,10 +49,11 @@ namespace Faculty.Pages
                         AssignmentList.Add(assignment);
                     }
                 }
+                return Page();
             }
             else
             {
-                RedirectToPage("/Error");
+                return RedirectToPage("/NotFound");
             }
         }
     }

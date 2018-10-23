@@ -26,10 +26,6 @@ namespace Faculty.Pages
         {
             int ID = (int)id;
             CurrentCourse = await courseDbContext.Courses.SingleOrDefaultAsync(m => m.ID == ID);
-            if(CurrentCourse==null)
-            {
-                RedirectToPage("/Error");
-            }
         }
     }
 }

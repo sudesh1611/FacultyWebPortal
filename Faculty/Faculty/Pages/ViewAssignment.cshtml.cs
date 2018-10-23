@@ -44,10 +44,6 @@ namespace Faculty.Pages
                     IfDue = true;
                 }
             }
-            else
-            {
-                RedirectToPage("/Error");
-            }
         }
     }
 }

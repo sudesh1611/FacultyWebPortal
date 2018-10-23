@@ -6,49 +6,54 @@
 
 @if (User.Identity.IsAuthenticated)
 {
-    <h1 class="text-center" style="font-family:'Comic Sans MS';">Edit Assignments Page</h1>
+    <h2 class="text-center" style="font-family:'Comic Sans MS';">Edit Assignments Page</h2>
     <hr />
 
     <br />
     <br />
 
     <div class="row">
-        <div class="container">
-            <h3 class="text-left" style="font-family:'Comic Sans MS';">Ongoing Assignments</h3>
-            <br />
-            <table class="table">
+        <h3 class="text-left" style="font-family:'Comic Sans MS';">Assignments</h3>
+        <table class="table table-condensed table-hover">
+            <tr>
+                <th>S.No.</th>
+                <th>Submission DateTime</th>
+                <th></th>
+            </tr>
+            @for (int i = 0; i < Model.SubmissionList.Count; i++)
+            {
                 <tr>
-                    <th>S.No.</th>
-                    <th>Submission DateTime</th>
-                    <th></th>
+                    <td>
+                        @(i + 1).
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.SubmissionList[i].DateTime)
+                    </td>
+                    <td>
+                        <a href="@Model.SubmissionList[i].SubmissionLink" target="_blank">View Submission</a>
+                    </td>
                 </tr>
-                @for (int i = 0; i < Model.SubmissionList.Count; i++)
-                {
-                    <tr>
-                        <td>
-                            @(i + 1).
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => Model.SubmissionList[i].DateTime)
-                        </td>
-                        <td>
-                            <a href="@Model.SubmissionList[i].SubmissionLink" target="_blank">View Submission</a>
-                        </td>
-                    </tr>
-                }
-            </table>
-        </div>
+            }
+        </table>
     </div>
 }
 else
 {
-    <hr />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
     <br />
     <br />
     <p class="text-danger text-center">You Can View This Page Only If You Are Logged In.</p>
     <br />
     <div class="text-center">
         <a class="btn btn-default" asp-page="/Login">Login</a>
+
     </div>
 }
 

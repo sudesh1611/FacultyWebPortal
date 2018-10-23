@@ -10,7 +10,7 @@
 
 @if (User.Identity.IsAuthenticated)
 {
-<h1 class="text-center" style="font-family:'Comic Sans MS';">Edit Courses Page</h1>
+    <h2 class="text-center" style="font-family:'Comic Sans MS';">Edit Courses Page</h2>
     <hr />
 
     <div class="row">
@@ -20,61 +20,64 @@
     </div>
 
     <br />
-    <br />
     <div class="row">
-        <div class="container">
-            <h3 class="text-left" style="font-family:'Comic Sans MS';">Courses</h3>
-            <br />
-            <table class="table">
+        <h4 class="text-left" style="font-family:'Comic Sans MS';">Courses</h4>
+        <table class="table table-hover table-condensed">
+            <tr>
+                <th>S.No.</th>
+                <th>Course Code</th>
+                <th>Course Title</th>
+                <th>Semester</th>
+                <th>Year</th>
+                <th></th>
+                <th></th>
+            </tr>
+            @for (int i = 0; i < Model.CoursesList.Count; i++)
+            {
                 <tr>
-                    <th>S.No.</th>
-                    <th>Course Code</th>
-                    <th>Course Title</th>
-                    <th>Semester</th>
-                    <th>Year</th>
-                    <th></th>
-                    <th></th>
+                    <td>
+                        @(i + 1).
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.CoursesList[i].CourseCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.CoursesList[i].CourseTitle)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.CoursesList[i].CourseSemester)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.CoursesList[i].CourseYear)
+                    </td>
+                    <td>
+                        <a asp-page="/EditCourse" asp-route-id="@Model.CoursesList[i].ID">Edit</a>
+                    </td>
+                    <td>
+                        <a asp-page="/DeleteCourse" asp-route-id="@Model.CoursesList[i].ID">Delete</a>
+                    </td>
                 </tr>
-                @for (int i = 0; i < Model.CoursesList.Count; i++)
-                {
-                    <tr>
-                        <td>
-                            @(i + 1).
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => Model.CoursesList[i].CourseCode)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => Model.CoursesList[i].CourseTitle)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => Model.CoursesList[i].CourseSemester)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => Model.CoursesList[i].CourseYear)
-                        </td>
-                        <td>
-                            <a asp-page="/EditCourse" asp-route-id="@Model.CoursesList[i].ID">Edit</a>
-                        </td>
-                        <td>
-                            <a asp-page="/DeleteCourse" asp-route-id="@Model.CoursesList[i].ID">Delete</a>
-                        </td>
-                    </tr>
-                }
-            </table>
-        </div>
+            }
+        </table>
     </div>
 }
 else
 {
-    <h2 class="text-center">Edit Courses</h2>
-    <hr />
     <br />
     <br />
-    <p class="text-danger text-center">You Can Edit This Page Only If You Are Logged In.</p>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <p class="text-danger text-center">You Can View This Page Only If You Are Logged In.</p>
     <br />
     <div class="text-center">
         <a class="btn btn-default" asp-page="/Login">Login</a>
+
     </div>
 }
 

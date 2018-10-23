@@ -44,9 +44,9 @@
             <div class="col-sm-3 col-md-2 sidebar">
                 <ul class="nav nav-sidebar">
                     <li class="active"><a asp-page="/Index">Home</a></li>
-                    <li><a asp-page="/Resources" >Resources</a></li>
-                    <li><a asp-page="/Assignments">Assignments</a></li>
-                    <li><a asp-page="/Exams">Exams</a></li>
+                    <li><a asp-page="/About">About</a></li>
+                    <li><a asp-page="/Publications">Publications</a></li>
+                    <li><a asp-page="/ResearchScholars">Research Scholars</a></li>
                 </ul>
                 <br />
                 <br />
@@ -56,13 +56,20 @@
                 <br />
                 <br />
                 <br />
+                <br />
+                <br />
+                <br />
                 <ul class="nav nav-sidebar">
-                    <li><a asp-page="/AllCourses">Other Courses</a></li>
-                    <li><a asp-page="/Index">Go to Home Page</a></li>
+                    <li><a asp-page="/AllCourses">Courses</a></li>
+                    <li><a asp-page="/Contact">Contact</a></li>
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li><a asp-page="/AdminDashboard">Admin Dashboard</a></li>
                         <li><a asp-page="/LogOut">Log Out</a></li>
+                    }
+                    else
+                    {
+                        <li><a asp-page="/Login">Login</a></li>
                     }
                 </ul>
             </div>

@@ -27,17 +27,18 @@ namespace Faculty.Pages
             GlobalAssignment = globalAssignment.Value;
         }
         
-        public async Task OnGetAsync()
+        public async Task<IActionResult> OnGetAsync()
         {
             int ID = GlobalAssignment.ID;
             Assignment assignment = await assignmentDbContext.Assignments.SingleOrDefaultAsync(m => m.ID == ID);
             if(assignment == null)
             {
-                RedirectToPage("/Index");
+                return RedirectToPage("/Index");
             }
             else
             {
                 CurrentCourse = await courseDbContext.Courses.SingleOrDefaultAsync(m => m.ID == assignment.CourseID);
+                return Page();
             }
         }
     }

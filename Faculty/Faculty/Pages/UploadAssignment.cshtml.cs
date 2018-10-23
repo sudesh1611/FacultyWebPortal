@@ -55,7 +55,7 @@ namespace Faculty.Pages
             {
                 SubmissionLink = Path.Combine(assignment.SubmissionDirectoryLink, file.FileName),
                 AssignmentID = ID,
-                DateTime = now.TimeOfDay.ToString() + " - " + now.ToShortDateString()
+                DateTime = now.ToShortTimeString() + " - " + now.ToShortDateString()
             };
             await submissionDbContext.Submissions.AddAsync(newSubmission);
             await submissionDbContext.SaveChangesAsync();

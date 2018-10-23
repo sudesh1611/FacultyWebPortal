@@ -10,7 +10,7 @@
 
 @if (User.Identity.IsAuthenticated)
 {
-    <h1 class="text-center" style="font-family:'Comic Sans MS';">Edit PhD Scholars</h1>
+    <h2 class="text-center" style="font-family:'Comic Sans MS';">Edit PhD Scholars</h2>
     <hr />
 
     <div class="row">
@@ -20,27 +20,24 @@
     </div>
 
     <br />
-    <br />
     <div class="row">
-        <div class="container">
-            <h3 class="text-left" style="font-family:'Comic Sans MS';">PhD Scholars</h3>
-            <br />
-            <table class="table">
-                <tr>
-                    <th>S.No.</th>
-                    <th>Name of The Student</th>
-                    <th>Thesis Title</th>
-                    <th>Degree Awarded/Ongoing</th>
-                    <th>Degree Completion Year</th>
-                    <th>Institute/University</th>
-                    <th></th>
-                    <th></th>
-                </tr>
-                @for (int i = 0; i < Model.phdStudentsList.Count; i++)
-                {
+        <h4 class="text-left" style="font-family:'Comic Sans MS';">PhD Scholars</h4>
+        <table class="table table-condensed table-condensed">
+            <tr>
+                <th>S.No.</th>
+                <th>Name of The Student</th>
+                <th>Thesis Title</th>
+                <th>Degree Awarded/Ongoing</th>
+                <th>Degree Completion Year</th>
+                <th>Institute/University</th>
+                <th></th>
+                <th></th>
+            </tr>
+            @for (int i = 0; i < Model.phdStudentsList.Count; i++)
+            {
                 <tr>
                     <td>
-                        @(i+1).
+                        @(i + 1).
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => Model.phdStudentsList[i].StudentName)
@@ -64,21 +61,27 @@
                         <a asp-page="/DeletePhdScholar" asp-route-id="@Model.phdStudentsList[i].ID">Delete</a>
                     </td>
                 </tr>
-                }
-            </table>
-        </div>
+            }
+        </table>
     </div>
 }
 else
 {
-    <h2 class="text-center">Edit PhD Scholars</h2>
-    <hr />
     <br />
     <br />
-    <p class="text-danger text-center">You Can Edit This Page Only If You Are Logged In.</p>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <p class="text-danger text-center">You Can View This Page Only If You Are Logged In.</p>
     <br />
     <div class="text-center">
         <a class="btn btn-default" asp-page="/Login">Login</a>
+
     </div>
 }
 

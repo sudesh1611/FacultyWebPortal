@@ -10,7 +10,7 @@
 
 @if (User.Identity.IsAuthenticated)
 {
-    <h1 class="text-center" style="font-family:'Comic Sans MS';">Edit Assignment Deadline</h1>
+    <h2 class="text-center" style="font-family:'Comic Sans MS';">Edit Assignment Deadline</h2>
     <p class="text-center">You can only edit assignment deadline </p>
     <hr />
     <br />
@@ -21,32 +21,31 @@
         <div class="row">
             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 form-group">
                 <label asp-for="newAssignment.CourseName">Select Course:</label>
-                <input class="form-control" asp-for="newAssignment.CourseName" style="background-color:#ecf0f1;" disabled />
+                <input class="form-control" asp-for="newAssignment.CourseName" disabled />
                 <span asp-validation-for="newAssignment.CourseName" class="text-danger"></span>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 form-group">
                 <label asp-for="newAssignment.AssignmentTitle">Assignment Title:</label>
-                <input type="text" class="form-control" asp-for="newAssignment.AssignmentTitle" style="background-color:#ecf0f1;text-transform:uppercase;" disabled />
+                <input type="text" class="form-control" asp-for="newAssignment.AssignmentTitle" style="text-transform:uppercase;" disabled />
                 <span asp-validation-for="newAssignment.AssignmentTitle" class="text-danger"></span>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 form-group">
                 <label asp-for="newAssignment.AssignmentDescription">Assignment Description :</label>
-                <textarea rows="6" type="text" class="form-control" asp-for="newAssignment.AssignmentDescription" style="background-color:#ecf0f1;" disabled></textarea>
+                <textarea rows="6" type="text" class="form-control" asp-for="newAssignment.AssignmentDescription" disabled></textarea>
                 <span asp-validation-for="newAssignment.AssignmentDescription" class="text-danger"></span>
             </div>
         </div>
         <div class="row">
             <h5 class="col-lg-4 col-md-4 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2" style="font-weight:bold;">Assignment Deadline</h5>
         </div>
-        <br />
         <div class="row">
             <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 form-group">
                 <label asp-for="newAssignment.DeadlineDay">Day of Month:</label>
-                <select class="form-control" asp-for="newAssignment.DeadlineDay" style="background-color:#ecf0f1;">
+                <select class="form-control" asp-for="newAssignment.DeadlineDay">
                     @for (int i = 1; i <= 31; i++)
                     {
                         <option value="@i">@i.ToString()</option>
@@ -56,7 +55,7 @@
             </div>
             <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 form-group">
                 <label asp-for="newAssignment.DeadLineMonth">Month:</label>
-                <select class="form-control" asp-for="newAssignment.DeadLineMonth" style="background-color:#ecf0f1;">
+                <select class="form-control" asp-for="newAssignment.DeadLineMonth">
                     @for (int i = 1; i <= 12; i++)
                     {
                         <option value="@i">@i.ToString()</option>
@@ -66,7 +65,7 @@
             </div>
             <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 form-group">
                 <label asp-for="newAssignment.DeadlineYear">Year:</label>
-                <select class="form-control" asp-for="newAssignment.DeadlineYear" style="background-color:#ecf0f1;">
+                <select class="form-control" asp-for="newAssignment.DeadlineYear">
                     @for (int i = 2022; i >= 1995; i--)
                     {
                         <option value="@i">@i.ToString()</option>
@@ -76,7 +75,7 @@
             </div>
             <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 form-group">
                 <label asp-for="newAssignment.DeadlineTime">Time:</label>
-                <select class="form-control" asp-for="newAssignment.DeadlineTime" style="background-color:#ecf0f1;">
+                <select class="form-control" asp-for="newAssignment.DeadlineTime">
                     @for (int i = 00; i <= 23; i++)
                     {
                         <option value="@i">@(i.ToString() + ":00")</option>
@@ -88,7 +87,7 @@
         <div class="row">
             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 form-group" hidden>
                 <label asp-for="newAssignment.ID">Assignment Description :</label>
-                <input type="text" class="form-control" asp-for="newAssignment.ID" style="background-color:#ecf0f1;" />
+                <input type="text" class="form-control" asp-for="newAssignment.ID" />
                 <span asp-validation-for="newAssignment.ID" class="text-danger"></span>
             </div>
         </div>
@@ -104,7 +103,25 @@
     <br />
     <br />
 }
+else
+{
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <p class="text-danger text-center">You Can View This Page Only If You Are Logged In.</p>
+    <br />
+    <div class="text-center">
+        <a class="btn btn-default" asp-page="/Login">Login</a>
 
+    </div>
+}
 
 @section Scripts {
     @await Html.PartialAsync("_ValidationScriptsPartial")
