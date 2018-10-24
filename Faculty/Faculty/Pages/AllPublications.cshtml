@@ -1,0 +1,49 @@
+﻿@page
+@model Faculty.Pages.AllPublicationsModel
+@{
+    Layout = "MainLayoutPublication";
+    ViewData["Title"] = "Publications";
+    ViewData["Name"] = Model.CurrentProfile.FullName;
+    ViewData["Department"] = Model.CurrentProfile.Department;
+    ViewData["College"] = Model.CurrentProfile.College;
+}
+
+<h2 class="text-center" style="font-family:'Comic Sans MS';">Publications</h2>
+<hr />
+<br />
+<h5 class="text-left">Google Scholar Profile Link : <a href="@Model.CurrentProfile.GoogleScholarLink" target="_blank">@Model.CurrentProfile.GoogleScholarLink</a></h5>
+<br />
+
+<div class="row">
+    <h4>Significant Publications</h4>
+    <table class="table table-hover">
+        <tr>
+            <th>S.No.</th>
+            <th>Title</th>
+            <th>Type</th>
+            <th>Year</th>
+            <th>Publication Link</th>
+        </tr>
+        @for (int i = 0; i < Model.PublicationsList.Count; i++)
+        {
+            <tr>
+                <td>
+                    @(i + 1).
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.PublicationsList[i].PublicationTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.PublicationsList[i].PublicationType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.PublicationsList[i].PublicationYear)
+                </td>
+                <td>
+                    <a href="@Model.PublicationsList[i].PublicationLink">View</a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+

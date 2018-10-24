@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace Faculty.Data
 {
-    public class ResourceDbContext:DbContext
+    public class CourseResourceDbContext:DbContext
     {
-        public ResourceDbContext(DbContextOptions<ResourceDbContext> options):base(options)
+        public CourseResourceDbContext(DbContextOptions<CourseResourceDbContext> options):base(options)
         {
 
         }
 
-        public DbSet<Resource> Resources { set; get; }
+        public DbSet<CourseResource> Resources { set; get; }
     }
 }

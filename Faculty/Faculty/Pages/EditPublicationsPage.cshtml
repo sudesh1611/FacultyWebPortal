@@ -1,0 +1,86 @@
+﻿@page
+@model Faculty.Pages.EditPublicationsPageModel
+@{
+    Layout = "AdminLayout";
+    ViewData["Title"] = "Admin Dashboard";
+    ViewData["Name"] = Model.CurrentProfile.FullName;
+    ViewData["Department"] = Model.CurrentProfile.Department;
+    ViewData["College"] = Model.CurrentProfile.College;
+}
+@if (User.Identity.IsAuthenticated)
+{
+    <h2 class="text-center" style="font-family:'Comic Sans MS';">Edit Publications</h2>
+    <hr />
+
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12 col-lg-offset-4 col-md-offset-4 text-center">
+            <a style="background-color:#34495e;color:#FFFFFF;" asp-page="/AddNewPublication" class="btn">Add New Publication</a>
+        </div>
+    </div>
+
+    <br />
+    <div class="row">
+        <h4 class="text-left" style="font-family:'Comic Sans MS';">Publications</h4>
+        <table class="table table-condensed table-condensed">
+            <tr>
+                <th>S.No.</th>
+                <th>Title</th>
+                <th>Type</th>
+                <th>Year</th>
+                <th>Paper Link</th>
+                <th></th>
+                <th></th>
+            </tr>
+            @for (int i = 0; i < Model.PublicationsList.Count; i++)
+            {
+            <tr>
+                <td>
+                    @(i + 1).
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.PublicationsList[i].PublicationTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.PublicationsList[i].PublicationType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.PublicationsList[i].PublicationYear)
+                </td>
+                <td>
+                    <a href="@Model.PublicationsList[i].PublicationLink" target="_blank">View</a>
+                </td>
+                <td>
+                    <a asp-page="/EditPublication" asp-route-id="@Model.PublicationsList[i].ID">Edit</a>
+                </td>
+                <td>
+                    <a asp-page="/DeletePublication" asp-route-id="@Model.PublicationsList[i].ID">Delete</a>
+                </td>
+            </tr>
+            }
+        </table>
+    </div>
+}
+else
+{
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <p class="text-danger text-center">You Can View This Page Only If You Are Logged In.</p>
+    <br />
+    <div class="text-center">
+        <a class="btn btn-default" asp-page="/Login">Login</a>
+
+    </div>
+}
+
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

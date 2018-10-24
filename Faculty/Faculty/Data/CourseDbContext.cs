@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Faculty.Data
 {
-    public class CourseResourceDbContext:DbContext
+    public class CourseDbContext:DbContext
     {
-        public CourseResourceDbContext(DbContextOptions<CourseResourceDbContext> options):base(options)
+        public CourseDbContext(DbContextOptions<CourseDbContext> options):base(options)
         {
 
         }

@@ -10,7 +10,7 @@
     <div class="col-sm-3 col-md-2 sidebar">
         <ul class="nav nav-sidebar">
             <li class="active"><a asp-page="/Course" asp-route-id="@Model.CurrentCourse.ID">Introduction</a></li>
-            <li><a asp-page="/Resources" asp-route-id="@Model.CurrentCourse.ID">Resources</a></li>
+            <li><a asp-page="/CourseResources" asp-route-id="@Model.CurrentCourse.ID">Resources</a></li>
             <li><a asp-page="/Assignments" asp-route-id="@Model.CurrentCourse.ID">Assignments</a></li>
             <li><a asp-page="/Exams" asp-route-id="@Model.CurrentCourse.ID">Exams</a></li>
         </ul>
@@ -20,11 +20,14 @@
         <br />
         <br />
         <br />
-        <br />
-        <br />
         <ul class="nav nav-sidebar">
             <li><a asp-page="/AllCourses">Other Courses</a></li>
             <li><a asp-page="/Index">Go to Home Page</a></li>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <li><a asp-page="/AdminDashboard">Admin Dashboard</a></li>
+                <li><a asp-page="/LogOut">Log Out</a></li>
+            }
         </ul>
     </div>
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -57,13 +60,13 @@
             <b>Contact:</b><br>
             For grading or other private matters, please send email directly
             to the instructor.
-                           <address>
+                           @*<address>
 
                                <strong>@Model.CurrentProfile.FullName</strong><br />
                                @Model.CurrentProfile.Designation,@Model.CurrentProfile.Department<br />
                                @Model.CurrentProfile.College<br />  
                                <a href="mailto:@Model.CurrentProfile.EmailID">@Model.CurrentProfile.EmailID</a>
-                           </address>
+                           </address>*@
         </p>
     </div>
 

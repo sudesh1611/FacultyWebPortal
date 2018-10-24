@@ -1,0 +1,83 @@
+﻿@page
+@model Faculty.Pages.EditCourseResourcesPageModel
+@{
+    Layout = "AdminLayout";
+    ViewData["Title"] = "Admin Dashboard";
+    ViewData["Name"] = Model.CurrentProfile.FullName;
+    ViewData["Department"] = Model.CurrentProfile.Department;
+    ViewData["College"] = Model.CurrentProfile.College;
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+    <h2 class="text-center" style="font-family:'Comic Sans MS';">Edit Course Resources Page</h2>
+    <hr />
+
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12 col-lg-offset-4 col-md-offset-4 text-center">
+            <a style="background-color:#34495e;color:#FFFFFF;" asp-page="/AddNewResource" class="btn">Add New Resource</a>
+        </div>
+    </div>
+
+    <br />
+    <div class="row">
+
+        <h4 class="text-left" style="font-family:'Comic Sans MS';">Resources</h4>
+        <table class="table table-condensed table-hover">
+            <tr>
+                <th>S.No.</th>
+                <th>Course Name</th>
+                <th>Title</th>
+                <th></th>
+                <th></th>
+            </tr>
+            @for (int i = 0; i < Model.ResourcesList.Count; i++)
+            {
+                <tr>
+                    <td>
+                        @(i + 1).
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.ResourcesList[i].CourseName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.ResourcesList[i].ResourceTitle)
+                    </td>
+                    <td>
+                        <a href="@Model.ResourcesList[i].ResourceLink" target="_blank">View</a>
+                    </td>
+                    <td>
+                        <a asp-page="/DeleteResource" asp-route-id="@Model.ResourcesList[i].ID">Delete</a>
+                    </td>
+                </tr>
+            }
+        </table>
+        <br />
+        <br />
+    </div>
+}
+else
+{
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <p class="text-danger text-center">You Can View This Page Only If You Are Logged In.</p>
+    <br />
+    <div class="text-center">
+        <a class="btn btn-default" asp-page="/Login">Login</a>
+
+    </div>
+}
+
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
+

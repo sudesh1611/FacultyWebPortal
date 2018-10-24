@@ -55,15 +55,15 @@
         <div class="row">
             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 form-group-sm">
                 <label asp-for="course.Instructor">Course Instructor:</label>
-                <input type="text" class="form-control" asp-for="course.Instructor"   required />
+                <input type="text" class="form-control" asp-for="course.Instructor" value="@Model.CurrentProfile.FullName"  required />
                 <span asp-validation-for="course.Instructor" class="text-danger"></span>
             </div>
         </div>
         <br />
         <div class="row">
             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 form-group-sm">
-                <label asp-for="course.TeachingAssistants">Course TeachingAssistants(seprated by semicolon ; ):</label>
-                <input type="text" class="form-control" asp-for="course.TeachingAssistants"   required />
+                <label asp-for="course.TeachingAssistants">Course TeachingAssistants((If any, seprated by semicolon ; ):</label>
+                <input type="text" class="form-control" asp-for="course.TeachingAssistants" />
                 <span asp-validation-for="course.TeachingAssistants" class="text-danger"></span>
             </div>
         </div>
@@ -87,7 +87,7 @@
         <div class="row">
             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 form-group">
                 <label asp-for="course.ExamInstructions">Exam Instructions (If any):</label>
-                <textarea rows="3" type="text" class="form-control" asp-for="course.ExamInstructions" required></textarea>
+                <textarea rows="3" type="text" class="form-control" asp-for="course.ExamInstructions"></textarea>
                 <span asp-validation-for="course.ExamInstructions" class="text-danger"></span>
             </div>
         </div>

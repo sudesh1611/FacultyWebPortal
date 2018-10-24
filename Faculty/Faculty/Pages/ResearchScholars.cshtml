@@ -1,0 +1,50 @@
+﻿@page
+@model Faculty.Pages.ResearchScholarsModel
+@{
+    Layout = "MainLayoutResearch";
+    ViewData["Title"] = "Login";
+    ViewData["Name"] = Model.CurrentProfile.FullName;
+    ViewData["Department"] = Model.CurrentProfile.Department;
+    ViewData["College"] = Model.CurrentProfile.College;
+}
+
+<h2 class="text-center" style="font-family:'Comic Sans MS';">Research Scholars</h2>
+<br />
+<div class="row">
+    <table class="table table-hover">
+        <tr>
+            <th>S.No.</th>
+            <th>Student Name</th>
+            <th>Thesis Title</th>
+            <th>Degree Status</th>
+            <th>Ph.D. Awarded (Year)</th>
+            <th>College</th>
+        </tr>
+        @for (int i = 0; i < Model.PhdStudentsList.Count; i++)
+        {
+            <tr>
+                <td>
+                    @(i + 1).
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.PhdStudentsList[i].StudentName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.PhdStudentsList[i].ThesisTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.PhdStudentsList[i].DegreeStatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.PhdStudentsList[i].DegreeCompletion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.PhdStudentsList[i].College)
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+
+

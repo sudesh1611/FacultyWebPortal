@@ -1,9 +1,17 @@
 ﻿@page
 @model ContactModel
 @{
-    Layout = "MainLayout";
+    Layout = "MainLayoutContact";
     ViewData["Title"] = "Contact";
     ViewData["Name"] = Model.CurrentProfile.FullName;
     ViewData["Department"] = Model.CurrentProfile.Department;
     ViewData["College"] = Model.CurrentProfile.College;
 }
+
+<br /><br /><br /><br /><br /><br /><br /><br />
+<h1 class="text-center text-capitalize" style="color:lightgray; font-size:6em;">Oops!</h1>
+<h4 class="text-center text-capitalize" style="color:lightgray;">This page is under Construction. Come back later.</h4>
+<br />
+<div class="text-center">
+    @*<a asp-page="/Index" class="btn" style="background-color:#34495e;color:#FFFFFF;">Home</a>*@
+</div>

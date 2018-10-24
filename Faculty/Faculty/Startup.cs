@@ -40,6 +40,8 @@ namespace Faculty
             services.AddDbContext<CourseDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDbContext<AssignmentDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDbContext<SubmissionDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<CourseResourceDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<PublicationDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,7 +52,7 @@ namespace Faculty
                 await next();
                 if (context.Response.StatusCode == 404)
                 {
-                    context.Request.Path = "/PageNotFound";
+                    context.Request.Path = "/NotFound";
                     await next();
                 }
             });

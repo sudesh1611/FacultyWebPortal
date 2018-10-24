@@ -1,0 +1,21 @@
+﻿@page
+@model Faculty.Pages.NotFoundModel
+@{
+    Layout = "MainLayoutNotFound";
+    ViewData["Title"] = "404 Not Found";
+    ViewData["Name"] = Model.CurrentProfile.FullName;
+    ViewData["Department"] = Model.CurrentProfile.Department;
+    ViewData["College"] = Model.CurrentProfile.College;
+}
+
+<br /><br /><br /><br /><br /><br /><br />
+<h1 class="text-center text-capitalize" style="color:lightgray; font-size:6em;">404</h1>
+<h4 class="text-center text-capitalize" style="color:lightgray;">Page Not Found</h4>
+<br /><br /><br /><br />
+<h2 class="text-center text-capitalize" style="color:lightgray;">
+    Whoops... looks like we lost one!
+</h2>
+@*<div>
+        <h2 class="text-lowercase text-center"><small>Redirecting you to Home Page in <span id="counter" style="color:black;">4</span> seconds...</small></h2>
+    </div>*@
+

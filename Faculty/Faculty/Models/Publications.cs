@@ -14,5 +14,7 @@ namespace Faculty.Models
         public string PublicationType { get; set; }
 
         public string PublicationLink { get; set; }
+
+        public string PublicationYear { get; set; }
     }
 }

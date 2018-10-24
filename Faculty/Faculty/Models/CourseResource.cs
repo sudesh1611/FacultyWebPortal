@@ -11,10 +11,12 @@ namespace Faculty.Models
 
         public int CourseID { get; set; }
 
-        public string Date { get; set; }
+        public string CourseName { get; set; }
 
         public string ResourceTitle { get; set; }
 
         public string ResourceLink { get; set; }
+
+        public string SubmissionDirectoryLink { get; set; }
     }
 }
