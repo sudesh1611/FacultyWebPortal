@@ -29,7 +29,7 @@ namespace Faculty.Pages
         public async Task OnGetAsync()
         {
             CurrentProfile = await profileDbContext.Profiles.SingleOrDefaultAsync(m => m.ID == 1);
-            if (User.Identity.IsAuthenticated)
+            if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
             {
                 PublicationsList = await publicationDbContext.Publications.ToListAsync();
                 if(PublicationsList!=null)

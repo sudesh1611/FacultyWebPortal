@@ -100,7 +100,7 @@ namespace Faculty.Pages
         {
             CurrentProfile = await profileDbContext.Profiles.SingleOrDefaultAsync(m => m.ID == 1);
             MyProfile = new TempProfile();
-            if (User.Identity.IsAuthenticated)
+            if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
             {
                 string emaiID = User.FindFirst(ClaimTypes.Email).Value;
                 var Profile = await profileDbContext.Profiles.SingleOrDefaultAsync(m => m.LoginEmailID == emaiID);
@@ -168,7 +168,7 @@ namespace Faculty.Pages
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (User.Identity.IsAuthenticated)
+            if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
             {
                 if (ModelState.IsValid)
                 {

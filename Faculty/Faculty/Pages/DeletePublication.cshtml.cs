@@ -21,7 +21,7 @@ namespace Faculty.Pages
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             int ID = (int)id;
-            if (User.Identity.IsAuthenticated)
+            if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
             {
                 var x = await publicationDbContext.Publications.SingleOrDefaultAsync(m => m.ID == ID);
                 if (x != null)

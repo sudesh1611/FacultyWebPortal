@@ -29,7 +29,7 @@ namespace Faculty.Pages
         public async Task<IActionResult> OnGetAsync()
         {
             CurrentProfile = await profileDbContext.Profiles.SingleOrDefaultAsync(m => m.ID == 1);
-            if (!User.Identity.IsAuthenticated)
+            if (!User.Identity.IsAuthenticated && User.IsInRole("Admin"))
             {
                 return RedirectToPage("/Error");
             }
@@ -38,7 +38,7 @@ namespace Faculty.Pages
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (User.Identity.IsAuthenticated)
+            if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
             {
                 if (ModelState.IsValid)
                 {

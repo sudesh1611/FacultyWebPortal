@@ -8,7 +8,7 @@
     ViewData["College"] = Model.CurrentProfile.College;
 }
 
-@if (User.Identity.IsAuthenticated)
+@if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
 {
     <h2 class="text-center" style="font-family:'Comic Sans MS';">Edit Assignments Page</h2>
     <hr />
@@ -93,7 +93,7 @@
                         <a asp-page="/ViewAssignmentAdmin" asp-route-id="@Model.OldAssignmentsList[i].ID">View</a>
                     </td>
                     <td>
-                        <a asp-page="/EditAssignment" asp-route-id="@Model.OldAssignmentsList[i].ID">Edit</a>
+                        <a asp-page="/EditAssignmentDeadline" asp-route-id="@Model.OldAssignmentsList[i].ID">Edit</a>
                     </td>
                     <td>
                         <a asp-page="/DeleteAssignment" asp-route-id="@Model.OldAssignmentsList[i].ID">Delete</a>

@@ -28,5 +28,17 @@ namespace Faculty.Models
         public string LecturesTiming { get; set; }
         
         public string ExamInstructions { get; set; }
+
+        public int DeadlineDay { get; set; }
+
+        public int DeadLineMonth { get; set; }
+
+        public int DeadlineYear { get; set; }
+
+        public string DeadlineTime { get; set; }
+
+        public string StudentsApproved { get; set; }
+
+        public string StudentRegistered { get; set; }
     }
 }

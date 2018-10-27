@@ -7,7 +7,7 @@
     ViewData["Department"] = Model.CurrentProfile.Department;
     ViewData["College"] = Model.CurrentProfile.College;
 }
-@if (User.Identity.IsAuthenticated)
+@if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
 {
     <h2 class="text-center" style="font-family:'Comic Sans MS';">Edit Publications</h2>
     <hr />

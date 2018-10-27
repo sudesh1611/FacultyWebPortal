@@ -35,7 +35,7 @@ namespace Faculty.Pages
         {
             CurrentProfile = await profileDbContext.Profiles.SingleOrDefaultAsync(m => m.ID == 1);
             ID = (int)id;
-            if (User.Identity.IsAuthenticated)
+            if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
             {
                 Student = await phdStudentsDbContext.PhdStudents.SingleOrDefaultAsync(m => m.ID == id);
             }
@@ -43,7 +43,7 @@ namespace Faculty.Pages
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (User.Identity.IsAuthenticated)
+            if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
             {
                 if (ModelState.IsValid)
                 {

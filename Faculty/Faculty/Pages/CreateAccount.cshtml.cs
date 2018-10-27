@@ -37,7 +37,7 @@ namespace Faculty.Pages
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (User.Identity.IsAuthenticated)
+            if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
             {
                 if(ModelState.IsValid)
                 {
@@ -74,6 +74,7 @@ namespace Faculty.Pages
                         var claims = new List<Claim>
                             {
                                 new Claim(ClaimTypes.Name,NewUser.FullName),
+                                new Claim(ClaimTypes.Role,"Admin"),
                                 new Claim(ClaimTypes.Email,NewUser.EmailID),
                             };
                         var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);

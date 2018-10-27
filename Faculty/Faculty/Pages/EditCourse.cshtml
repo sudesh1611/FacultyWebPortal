@@ -8,7 +8,7 @@
     ViewData["College"] = Model.CurrentProfile.College;
 }
 
-@if (User.Identity.IsAuthenticated)
+@if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
 {
     <h2 class="text-center" style="font-family:'Comic Sans MS';">Edit Course</h2>
     <hr />
@@ -93,6 +93,51 @@
                 <label asp-for="course.ExamInstructions">Exam Instructions (If any):</label>
                 <textarea rows="3" type="text" class="form-control" asp-for="course.ExamInstructions"></textarea>
                 <span asp-validation-for="course.ExamInstructions" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <h5 class="col-lg-4 col-md-4 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2" style="font-weight:bold;">Registration Deadline</h5>
+        </div>
+        <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 form-group">
+                <label asp-for="course.DeadlineDay">Day of Month:</label>
+                <select class="form-control" asp-for="course.DeadlineDay">
+                    @for (int i = 1; i <= 31; i++)
+                    {
+                        <option value="@i">@i.ToString()</option>
+                    }
+                </select>
+                <span asp-validation-for="course.DeadlineDay" class="text-danger"></span>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 form-group">
+                <label asp-for="course.DeadLineMonth">Month:</label>
+                <select class="form-control" asp-for="course.DeadLineMonth">
+                    @for (int i = 1; i <= 12; i++)
+                    {
+                        <option value="@i">@i.ToString()</option>
+                    }
+                </select>
+                <span asp-validation-for="course.DeadLineMonth" class="text-danger"></span>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 form-group">
+                <label asp-for="course.DeadlineYear">Year:</label>
+                <select class="form-control" asp-for="course.DeadlineYear">
+                    @for (int i = 2022; i >= 1995; i--)
+                    {
+                        <option value="@i">@i.ToString()</option>
+                    }
+                </select>
+                <span asp-validation-for="course.DeadlineYear" class="text-danger"></span>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 form-group">
+                <label asp-for="course.DeadlineTime">Time:</label>
+                <select class="form-control" asp-for="course.DeadlineTime">
+                    @for (int i = 00; i <= 23; i++)
+                    {
+                        <option value="@i">@(i.ToString() + ":00")</option>
+                    }
+                </select>
+                <span asp-validation-for="course.DeadlineTime" class="text-danger"></span>
             </div>
         </div>
         <br />

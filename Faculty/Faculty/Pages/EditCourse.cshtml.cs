@@ -36,7 +36,7 @@ namespace Faculty.Pages
         {
             CurrentProfile = await profileDbContext.Profiles.SingleOrDefaultAsync(m => m.ID == 1);
             ID = (int)id;
-            if (User.Identity.IsAuthenticated)
+            if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
             {
                 course = await courseDbContext.Courses.SingleOrDefaultAsync(m => m.ID == id);
                 if (!String.IsNullOrEmpty(course.TeachingAssistants))
@@ -54,7 +54,7 @@ namespace Faculty.Pages
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (User.Identity.IsAuthenticated)
+            if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
             {
                 if (ModelState.IsValid)
                 {
@@ -69,6 +69,10 @@ namespace Faculty.Pages
                     tempUser.CourseTitle = course.CourseTitle;
                     tempUser.CourseYear = course.CourseYear;
                     tempUser.Instructor = course.Instructor;
+                    tempUser.DeadlineDay = course.DeadlineDay;
+                    tempUser.DeadLineMonth = course.DeadLineMonth;
+                    tempUser.DeadlineTime = course.DeadlineTime;
+                    tempUser.DeadlineYear = course.DeadlineYear;
                     tempUser.LecturesTiming = course.LecturesTiming;
                     tempUser.ExamInstructions = course.ExamInstructions;
                     var tempString = course.TeachingAssistants.Split(';').ToList();
