@@ -134,7 +134,7 @@
                 <select class="form-control" asp-for="course.DeadlineTime">
                     @for (int i = 00; i <= 23; i++)
                     {
-                        <option value="@i">@(i.ToString() + ":00")</option>
+                    <option value="@(i.ToString()+":00:00")">@(i.ToString() + ":00")</option>
                     }
                 </select>
                 <span asp-validation-for="course.DeadlineTime" class="text-danger"></span>

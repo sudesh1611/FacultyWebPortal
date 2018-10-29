@@ -7,6 +7,24 @@
     ViewData["Department"] = Model.CurrentProfile.Department;
     ViewData["College"] = Model.CurrentProfile.College;
 }
+
+
+@section JavaScripts {
+    <script>
+        function DegreeChanged() {
+            var x = document.getElementById("test");
+            var y = document.getElementById("testt");
+
+            if (x.value === "Ongoing") {
+                y.style.display = 'none';
+            }
+            else {
+                y.style.display = 'block';
+            }
+        }
+    </script>
+}
+
 @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
 {
     <h2 class="text-center" style="font-family:'Comic Sans MS';">Add Phd Scholar</h2>
@@ -25,32 +43,32 @@
         </div>
         <div class="row">
             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 form-group">
-                <label asp-for="Student.ThesisTitle">Thesis Title:</label>
-                <input type="text" class="form-control" asp-for="Student.ThesisTitle"   required />
+                <label asp-for="Student.ThesisTitle">Topic/Research Area:</label>
+                <input type="text" class="form-control" asp-for="Student.ThesisTitle" required />
                 <span asp-validation-for="Student.ThesisTitle" class="text-danger"></span>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 form-group">
                 <label asp-for="Student.DegreeStatus">Degree Status (Complete/Ongoing):</label>
-                <select class="form-control" asp-for="Student.DegreeStatus"  >
-                    <option value="Ongoing">Ongoing</option>
+                <select id="test" class="form-control" asp-for="Student.DegreeStatus" onchange="DegreeChanged()">
                     <option value="Completed">Completed</option>
+                    <option value="Ongoing">Ongoing</option>
                 </select>
                 <span asp-validation-for="Student.DegreeStatus" class="text-danger"></span>
             </div>
         </div>
-        <div class="row">
+        <div class="row" id="testt">
             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 form-group">
                 <label asp-for="Student.DegreeCompletion">Degree Completion Year(if Completed):</label>
-                <input type="text" class="form-control" asp-for="Student.DegreeCompletion"   />
+                <input type="text" class="form-control" asp-for="Student.DegreeCompletion" />
                 <span asp-validation-for="Student.DegreeCompletion" class="text-danger"></span>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 form-group">
                 <label asp-for="Student.College">College/University:</label>
-                <input type="text" class="form-control" asp-for="Student.College"   required />
+                <input type="text" class="form-control" asp-for="Student.College" required />
                 <span asp-validation-for="Student.College" class="text-danger"></span>
             </div>
         </div>
@@ -58,7 +76,7 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
 
-                <input type="submit" class="btn " value="Create Scholar"  style="background-color:#34495e;color:#FFFFFF;" />
+                <input type="submit" class="btn " value="Create Scholar" style="background-color:#34495e;color:#FFFFFF;" />
 
             </div>
         </div>

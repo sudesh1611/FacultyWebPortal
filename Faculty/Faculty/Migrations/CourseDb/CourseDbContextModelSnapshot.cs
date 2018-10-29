@@ -30,11 +30,25 @@ namespace Faculty.Migrations.CourseDb
 
                     b.Property<string>("CourseYear");
 
+                    b.Property<int>("DeadLineMonth");
+
+                    b.Property<int>("DeadlineDay");
+
+                    b.Property<string>("DeadlineTime");
+
+                    b.Property<int>("DeadlineYear");
+
                     b.Property<string>("ExamInstructions");
 
                     b.Property<string>("Instructor");
 
                     b.Property<string>("LecturesTiming");
+
+                    b.Property<string>("StudentDeclined");
+
+                    b.Property<string>("StudentRegistered");
+
+                    b.Property<string>("StudentsApproved");
 
                     b.Property<int>("SupervisorID");
 

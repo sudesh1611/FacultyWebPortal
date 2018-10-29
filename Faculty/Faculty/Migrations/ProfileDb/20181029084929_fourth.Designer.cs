@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Faculty.Migrations.ProfileDb
 {
     [DbContext(typeof(ProfileDbContext))]
-    [Migration("20181022171546_InitProfile")]
-    partial class InitProfile
+    [Migration("20181029084929_fourth")]
+    partial class fourth
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

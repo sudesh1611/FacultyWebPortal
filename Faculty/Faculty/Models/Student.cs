@@ -30,17 +30,11 @@ namespace Faculty.Models
         [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
 
-        public string ProfilePic { get; set; }
-
         [Required(ErrorMessage = " This field is required")]
         public string Degree { get; set; }
 
         [Required(ErrorMessage = " This field is required")]
         public string Year { get; set; }
-
-        public string CourseRegistered { get; set; }
-
-        public string CourseApproved { get; set; }
 
     }
 }

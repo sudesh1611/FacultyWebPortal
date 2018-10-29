@@ -1,0 +1,92 @@
+﻿@page
+@model Faculty.Pages.StudentDashboardModel
+@{
+    Layout = "StudentDashboardLayout";
+    ViewData["Title"] = "Student Dashboard";
+    ViewData["Name"] = Model.CurrentProfile.FullName;
+    ViewData["Department"] = Model.CurrentProfile.Department;
+    ViewData["College"] = Model.CurrentProfile.College;
+}
+
+@if (User.Identity.IsAuthenticated && User.IsInRole("Student"))
+{
+    <h2 class="text-center" style="font-family:'Comic Sans MS';font-weight:bold;">Student DashBoard</h2>
+    <hr />
+    <br />
+
+    @*First Row*@
+    <div class="row">
+        <div class="col-lg-3 col-md-3 col-xs-12 text-center">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title text-capitalize" style="font-family:'Comic Sans MS';font-weight:bold;">Profile</h3>
+                </div>
+                <div class="panel-body text-justify">
+                    <ul>
+                        <li><a asp-page="/EditProfileStudent">Edit Profile</a></li>
+                        <li><a asp-page="/ChangePassword">Change Password</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        @*<div class="col-lg-3 col-md-3 col-xs-12 text-center">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title text-capitalize" style="font-family:'Comic Sans MS';font-weight:bold;">Assignments</h3>
+                </div>
+                <div class="panel-body text-justify">
+                    <ul>
+                        <li><a asp-page="/AddNewAssignment">Add New Assignment</a></li>
+                        <li><a asp-page="/EditAssignmentsPage">Edit / View Assignments</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-xs-12 text-center">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title text-capitalize" style="font-family:'Comic Sans MS';font-weight:bold;">Ph.D. Scholars</h3>
+                </div>
+                <div class="panel-body text-justify">
+                    <ul>
+                        <li><a asp-page="/AddNewPhdScholar">Add Phd Scholar</a></li>
+                        <li><a asp-page="/EditPhdScholarsPage">Edit/View Phd Scholars</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-xs-12 text-center">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title text-capitalize" style="font-family:'Comic Sans MS';font-weight:bold;">Publications</h3>
+                </div>
+                <div class="panel-body text-justify">
+                    <ul>
+                        <li><a asp-page="/AddNewPublication">Add New Publication</a></li>
+                        <li><a asp-page="/EditPublicationsPage">Edit/View Publications</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>*@
+    </div>
+}
+else
+{
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <p class="text-danger text-center">You Can View This Page Only If You Are Logged In.</p>
+    <br />
+    <div class="text-center">
+        <a class="btn btn-default" asp-page="/Login">Login</a>
+
+    </div>
+}
+

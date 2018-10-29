@@ -39,7 +39,7 @@ namespace Faculty.Pages
                     SubmissionList.Add(submission);
                 }
             }
-            SubmissionList.OrderBy(m => m.DateTime);
+            SubmissionList.OrderBy(m => m.RollNumber);
         }
     }
 }

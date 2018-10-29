@@ -8,10 +8,21 @@
     ViewData["College"] = Model.CurrentProfile.College;
 }
 
-<br /><br /><br /><br /><br /><br /><br /><br />
-<h1 class="text-center text-capitalize" style="color:lightgray; font-size:6em;">Oops!</h1>
-<h4 class="text-center text-capitalize" style="color:lightgray;">This page is under Construction. Come back later.</h4>
+@*<br /><br /><br /><br /><br /><br /><br /><br />
+    <h1 class="text-center text-capitalize" style="color:lightgray; font-size:6em;">Oops!</h1>
+    <h4 class="text-center text-capitalize" style="color:lightgray;">This page is under Construction. Come back later.</h4>
+    <br />*@
 <br />
-<div class="text-center">
-    @*<a asp-page="/Index" class="btn" style="background-color:#34495e;color:#FFFFFF;">Home</a>*@
-</div>
+<h2 style="font-family:'Comic Sans MS';"><strong>Contact Me</strong></h2>
+<br />
+<address>
+    <strong>@Model.CurrentProfile.FullName</strong><br />
+    @(Model.CurrentProfile.Designation+", "+Model.CurrentProfile.Department)<br />
+    @Model.CurrentProfile.College<br />
+    <abbr title="Phone">P:</abbr>
+    @("+91 - "+Model.CurrentProfile.MobileNumber)
+</address>
+
+<address>
+    <strong>Email:</strong> <a href="@("Mailto:"+Model.CurrentProfile.EmailID)">@Model.CurrentProfile.EmailID</a><br />
+</address>

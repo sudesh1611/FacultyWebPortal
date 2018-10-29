@@ -81,7 +81,7 @@ namespace Faculty.Pages
                         user.Password = InputData.NewPassword;
                         user.ConfirmPassword = InputData.ConfirmNewPassword;
                         studentDbContext.Students.Update(user);
-                        await userDbContext.SaveChangesAsync();
+                        await studentDbContext.SaveChangesAsync();
                         return RedirectToPage("/StudentDashboard");
                     }
                     else

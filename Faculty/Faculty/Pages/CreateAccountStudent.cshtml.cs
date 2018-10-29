@@ -31,10 +31,9 @@ namespace Faculty.Pages
             CurrentProfile = new Profile();
         }
 
-        public async Task<IActionResult> OnGetAsync()
+        public async Task OnGetAsync()
         {
             CurrentProfile = await profileDbContext.Profiles.SingleOrDefaultAsync(m => m.ID == 1);
-            return RedirectToPage("/NotFound");
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -43,8 +42,6 @@ namespace Faculty.Pages
             {
                 NewStudent.EmailID = NewStudent.EmailID.ToLower();
                 var stu = await studentDbContext.Students.SingleOrDefaultAsync(m => m.EmailID == NewStudent.EmailID);
-                List<int> CoursesRegisteres = new List<int>();
-                List<int> CoursesApproved = new List<int>();
                 if (stu == null)
                 {
                     Student newStu = new Student()
@@ -54,11 +51,8 @@ namespace Faculty.Pages
                         Password = NewStudent.Password,
                         ConfirmPassword = NewStudent.ConfirmPassword,
                         RollNumber = NewStudent.RollNumber,
-                        ProfilePic = String.Empty,
                         Degree = NewStudent.Degree,
                         Year = NewStudent.Year,
-                        CourseRegistered=JsonConvert.SerializeObject(CoursesRegisteres.ToString()),
-                        CourseApproved = JsonConvert.SerializeObject(CoursesApproved.ToString())
                     };
 
                     await studentDbContext.Students.AddAsync(newStu);

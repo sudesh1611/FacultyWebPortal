@@ -13,6 +13,7 @@
             <li class="active"><a asp-page="/CourseResources" asp-route-id="@Model.CurrentCourse.ID">Resources</a></li>
             <li><a asp-page="/Assignments" asp-route-id="@Model.CurrentCourse.ID">Assignments</a></li>
             <li><a asp-page="/Exams" asp-route-id="@Model.CurrentCourse.ID">Exams</a></li>
+            <li><a asp-page="/CourseRegistration" asp-route-id="@Model.CurrentCourse.ID">Register For Course</a></li>
         </ul>
         <br />
         <br />
@@ -23,10 +24,19 @@
         <ul class="nav nav-sidebar">
             <li><a asp-page="/AllCourses">Other Courses</a></li>
             <li><a asp-page="/Index">Go to Home Page</a></li>
-            @if (User.Identity.IsAuthenticated)
+            @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
             {
                 <li><a asp-page="/AdminDashboard">Admin Dashboard</a></li>
                 <li><a asp-page="/LogOut">Log Out</a></li>
+            }
+            else if (User.Identity.IsAuthenticated && User.IsInRole("Student"))
+            {
+                <li><a asp-page="/StudentDashboard">Student Dashboard</a></li>
+                <li><a asp-page="/LogOut">Log Out</a></li>
+            }
+            else
+            {
+                <li><a asp-page="/Login">Login</a></li>
             }
         </ul>
     </div>

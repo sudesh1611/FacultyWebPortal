@@ -34,7 +34,7 @@ namespace Faculty.Pages
             assignment.AttachmentFulLink = Path.Combine(assignment.SubmissionDirectoryLink, "attachment" + file.FileName);
             assignmentDbContext.Assignments.Update(assignment);
             await assignmentDbContext.SaveChangesAsync();
-            return RedirectToPage("/UploadAssignmentAttachmentPage");
+            return RedirectToPage("/EditAssignmentsPage");
         }
     }
 }

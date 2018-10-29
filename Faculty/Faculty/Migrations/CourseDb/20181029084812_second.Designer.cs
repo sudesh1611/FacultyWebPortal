@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Faculty.Migrations.CourseDb
 {
     [DbContext(typeof(CourseDbContext))]
-    [Migration("20181022171437_InitCourse")]
-    partial class InitCourse
+    [Migration("20181029084812_second")]
+    partial class second
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -32,11 +32,25 @@ namespace Faculty.Migrations.CourseDb
 
                     b.Property<string>("CourseYear");
 
+                    b.Property<int>("DeadLineMonth");
+
+                    b.Property<int>("DeadlineDay");
+
+                    b.Property<string>("DeadlineTime");
+
+                    b.Property<int>("DeadlineYear");
+
                     b.Property<string>("ExamInstructions");
 
                     b.Property<string>("Instructor");
 
                     b.Property<string>("LecturesTiming");
+
+                    b.Property<string>("StudentDeclined");
+
+                    b.Property<string>("StudentRegistered");
+
+                    b.Property<string>("StudentsApproved");
 
                     b.Property<int>("SupervisorID");
 

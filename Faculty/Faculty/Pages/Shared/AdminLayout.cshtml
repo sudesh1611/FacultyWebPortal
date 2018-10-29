@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
-
+    @RenderSection("JavaScripts", required: false)
     <environment include="Development">
         <link href="~/css/bootstrap.min.css" rel="stylesheet">
         <link href="~/css/bootstrap-flat-extras.css" rel="stylesheet">
@@ -55,9 +55,14 @@
                 <ul class="nav nav-sidebar">
                     <li><a asp-page="/AllCourses">Courses</a></li>
                     <li><a asp-page="/Contact">Contact</a></li>
-                    @if (User.Identity.IsAuthenticated)
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                     {
                         <li class="active"><a asp-page="/AdminDashboard">Admin Dashboard</a></li>
+                        <li><a asp-page="/LogOut">Log Out</a></li>
+                    }
+                    else if (User.Identity.IsAuthenticated && User.IsInRole("Student"))
+                    {
+                        <li class="active"><a asp-page="/StudentDashboard">Student Dashboard</a></li>
                         <li><a asp-page="/LogOut">Log Out</a></li>
                     }
                     else

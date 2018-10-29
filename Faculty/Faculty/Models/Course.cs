@@ -40,5 +40,7 @@ namespace Faculty.Models
         public string StudentsApproved { get; set; }
 
         public string StudentRegistered { get; set; }
+
+        public string StudentDeclined { get; set; }
     }
 }

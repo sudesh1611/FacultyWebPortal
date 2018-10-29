@@ -2,7 +2,7 @@
 
 namespace Faculty.Migrations.PhdStudentsDb
 {
-    public partial class InitPhd : Migration
+    public partial class third : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -55,14 +55,19 @@
                 <ul class="nav nav-sidebar">
                     <li><a asp-page="/AllCourses">Courses</a></li>
                     <li><a asp-page="/Contact">Contact</a></li>
-                    @if (User.Identity.IsAuthenticated)
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                     {
                         <li><a asp-page="/AdminDashboard">Admin Dashboard</a></li>
                         <li><a asp-page="/LogOut">Log Out</a></li>
                     }
+                    else if (User.Identity.IsAuthenticated && User.IsInRole("Student"))
+                    {
+                        <li><a asp-page="/StudentDashboard">Student Dashboard</a></li>
+                        <li><a asp-page="/LogOut">Log Out</a></li>
+                    }
                     else
                     {
-                        <li  class="active"><a asp-page="/Login">Login</a></li>
+                        <li class="active"><a asp-page="/Login">Login</a></li>
                     }
                 </ul>
             </div>

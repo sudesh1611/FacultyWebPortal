@@ -13,6 +13,7 @@
             <li><a asp-page="/CourseResources" asp-route-id="@Model.CurrentCourse.ID">Resources</a></li>
             <li class="active"><a asp-page="/Assignments" asp-route-id="@Model.CurrentCourse.ID">Assignments</a></li>
             <li><a asp-page="/Exams" asp-route-id="@Model.CurrentCourse.ID">Exams</a></li>
+            <li><a asp-page="/CourseRegistration" asp-route-id="@Model.CurrentCourse.ID">Register For Course</a></li>
         </ul>
         <br />
         <br />
@@ -23,10 +24,19 @@
         <ul class="nav nav-sidebar">
             <li><a asp-page="/AllCourses">Other Courses</a></li>
             <li><a asp-page="/Index">Go to Home Page</a></li>
-            @if (User.Identity.IsAuthenticated)
+            @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
             {
                 <li><a asp-page="/AdminDashboard">Admin Dashboard</a></li>
                 <li><a asp-page="/LogOut">Log Out</a></li>
+            }
+            else if (User.Identity.IsAuthenticated && User.IsInRole("Student"))
+            {
+                <li><a asp-page="/StudentDashboard">Student Dashboard</a></li>
+                <li><a asp-page="/LogOut">Log Out</a></li>
+            }
+            else
+            {
+                <li><a asp-page="/Login">Login</a></li>
             }
         </ul>
     </div>
@@ -40,35 +50,51 @@
         <br />
 
         <div class="row text-center">
-            <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12 col-lg-offset-3 col-md-offset-3 text-center">
-                <button type="button" class="btn btn-sm" data-toggle="modal" data-target="#myModal2">Upload Assignment</button>
-                <br />
+            @if (User.Identity.IsAuthenticated && User.IsInRole("Student"))
+            {
+                @if (Model.CanUpload)
+                {
+                    <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12 col-lg-offset-3 col-md-offset-3 text-center">
+                        <button type="button" class="btn btn-sm" data-toggle="modal" data-target="#myModal2">Upload Assignment</button>
+                        <br />
 
-                <div class="modal fade" id="myModal2" role="dialog" style="background-color:#ecf0f1;">
-                    <div class="modal-dialog" style="background-color:#ecf0f1;">
-                        <div class="modal-content" style="background-color:#ecf0f1;">
-                            <div class="modal-header" style="background-color:#ecf0f1;">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">Upload Assignment</h4>
-                            </div>
-                            <div class="modal-body" style="background-color:#ecf0f1;">
-                                <form asp-page="/UploadAssignment" method="post" enctype="multipart/form-data" class="form-inline">
-                                    <input type="file" name="file" class="btn btn-sm" />
-                                    <button type="submit" class="btn btn-sm">Upload</button>
-                                </form>
-                            </div>
+                        <div class="modal fade" id="myModal2" role="dialog" style="background-color:#ecf0f1;">
+                            <div class="modal-dialog" style="background-color:#ecf0f1;">
+                                <div class="modal-content" style="background-color:#ecf0f1;">
+                                    <div class="modal-header" style="background-color:#ecf0f1;">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Upload Assignment</h4>
+                                    </div>
+                                    <div class="modal-body" style="background-color:#ecf0f1;">
+                                        <form asp-page="/UploadAssignment" method="post" enctype="multipart/form-data" class="form-inline">
+                                            <input type="file" name="file" class="btn btn-sm" />
+                                            <button type="submit" class="btn btn-sm">Upload</button>
+                                        </form>
+                                    </div>
 
+                                </div>
+                            </div>
                         </div>
                     </div>
+                }
+                else
+                {
+                    <p>You are not enrolled in this course. Please Enroll first.</p>
+                }
+            }
+            else
+            {
+                <p class="text-danger text-center">You Can View This Page Only If You Are Logged In.</p>
+                <br />
+                <div class="text-center">
+                    <a class="btn btn-default" asp-page="/Login">Login</a>
+
                 </div>
-            </div>
+            }
         </div>
         <br />
         <br />
         <br />
         <br />
-        <p>
-            *Note: Name of the file should be your roll number or registration number.
-        </p>
     </div>
 </div>

@@ -92,7 +92,7 @@
             </div>
         </div>
         <div class="row">
-            <h5 class="col-lg-4 col-md-4 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2" style="font-weight:bold;">Registration Deadline</h5>
+            <h5 class="col-lg-4 col-md-4 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2" style="font-weight:bold;">Course Registration Deadline for students</h5>
         </div>
         <div class="row">
             <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 form-group">
@@ -130,7 +130,7 @@
                 <select class="form-control" asp-for="course.DeadlineTime">
                     @for (int i = 00; i <= 23; i++)
                     {
-                        <option value="@i">@(i.ToString() + ":00")</option>
+                        <option value="@(i.ToString()+":00:00")">@(i.ToString() + ":00")</option>
                     }
                 </select>
                 <span asp-validation-for="course.DeadlineTime" class="text-danger"></span>

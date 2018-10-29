@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Faculty.Migrations.PhdStudentsDb
+namespace Faculty.Migrations.SubmissionDb
 {
-    [DbContext(typeof(PhdStudentsDbContext))]
-    [Migration("20181022171517_InitPhd")]
-    partial class InitPhd
+    [DbContext(typeof(SubmissionDbContext))]
+    [Migration("20181029085214_eighth")]
+    partial class eighth
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -17,26 +17,24 @@ namespace Faculty.Migrations.PhdStudentsDb
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.1.4-rtm-31024");
 
-            modelBuilder.Entity("Faculty.Models.PhdStudents", b =>
+            modelBuilder.Entity("Faculty.Models.Submission", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("College");
+                    b.Property<int>("AssignmentID");
 
-                    b.Property<string>("DegreeCompletion");
+                    b.Property<string>("DateTime");
 
-                    b.Property<string>("DegreeStatus");
+                    b.Property<string>("RollNumber");
 
-                    b.Property<string>("StudentName");
+                    b.Property<string>("SubmissionLink");
 
-                    b.Property<int>("SupervisorID");
-
-                    b.Property<string>("ThesisTitle");
+                    b.Property<string>("SubmittedBy");
 
                     b.HasKey("ID");
 
-                    b.ToTable("PhdStudents");
+                    b.ToTable("Submissions");
                 });
 #pragma warning restore 612, 618
         }

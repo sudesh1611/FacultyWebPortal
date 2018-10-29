@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Faculty.Migrations.PublicationDb
+namespace Faculty.Migrations.CourseResourceDb
 {
-    [DbContext(typeof(PublicationDbContext))]
-    [Migration("20181023154741_InitPublication")]
-    partial class InitPublication
+    [DbContext(typeof(CourseResourceDbContext))]
+    [Migration("20181029085125_sixth")]
+    partial class sixth
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -17,22 +17,24 @@ namespace Faculty.Migrations.PublicationDb
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.1.4-rtm-31024");
 
-            modelBuilder.Entity("Faculty.Models.Publications", b =>
+            modelBuilder.Entity("Faculty.Models.CourseResource", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("PublicationLink");
+                    b.Property<int>("CourseID");
 
-                    b.Property<string>("PublicationTitle");
+                    b.Property<string>("CourseName");
 
-                    b.Property<string>("PublicationType");
+                    b.Property<string>("ResourceLink");
 
-                    b.Property<string>("PublicationYear");
+                    b.Property<string>("ResourceTitle");
+
+                    b.Property<string>("SubmissionDirectoryLink");
 
                     b.HasKey("ID");
 
-                    b.ToTable("Publications");
+                    b.ToTable("Resources");
                 });
 #pragma warning restore 612, 618
         }

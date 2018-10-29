@@ -24,7 +24,11 @@ namespace Faculty.Migrations.SubmissionDb
 
                     b.Property<string>("DateTime");
 
+                    b.Property<string>("RollNumber");
+
                     b.Property<string>("SubmissionLink");
+
+                    b.Property<string>("SubmittedBy");
 
                     b.HasKey("ID");
 

@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Faculty.Migrations.SubmissionDb
+namespace Faculty.Migrations.PublicationDb
 {
-    [DbContext(typeof(SubmissionDbContext))]
-    [Migration("20181022171618_InitSubmission")]
-    partial class InitSubmission
+    [DbContext(typeof(PublicationDbContext))]
+    [Migration("20181029084954_fifth")]
+    partial class fifth
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -17,20 +17,22 @@ namespace Faculty.Migrations.SubmissionDb
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.1.4-rtm-31024");
 
-            modelBuilder.Entity("Faculty.Models.Submission", b =>
+            modelBuilder.Entity("Faculty.Models.Publications", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("AssignmentID");
+                    b.Property<string>("PublicationLink");
 
-                    b.Property<string>("DateTime");
+                    b.Property<string>("PublicationTitle");
 
-                    b.Property<string>("SubmissionLink");
+                    b.Property<string>("PublicationType");
+
+                    b.Property<string>("PublicationYear");
 
                     b.HasKey("ID");
 
-                    b.ToTable("Submissions");
+                    b.ToTable("Publications");
                 });
 #pragma warning restore 612, 618
         }

@@ -14,5 +14,9 @@ namespace Faculty.Models
         public string DateTime { get; set; }
 
         public string SubmissionLink { get; set; }
+
+        public string SubmittedBy { get; set; }
+
+        public string RollNumber { get; set; }
     }
 }

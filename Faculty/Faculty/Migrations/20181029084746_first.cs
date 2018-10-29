@@ -2,7 +2,7 @@
 
 namespace Faculty.Migrations
 {
-    public partial class InitAssignment : Migration
+    public partial class first : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

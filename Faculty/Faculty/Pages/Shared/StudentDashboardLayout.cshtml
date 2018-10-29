@@ -42,7 +42,7 @@
             <div class="col-sm-3 col-md-2 sidebar">
                 <ul class="nav nav-sidebar">
                     <li><a asp-page="/Index">Home</a></li>
-                    <li class="active"><a asp-page="/About">About</a></li>
+                    <li><a asp-page="/About">About</a></li>
                     <li><a asp-page="/AllPublications">Publications</a></li>
                     <li><a asp-page="/ResearchScholars">Research Scholars</a></li>
                 </ul>
@@ -62,7 +62,7 @@
                     }
                     else if (User.Identity.IsAuthenticated && User.IsInRole("Student"))
                     {
-                        <li><a asp-page="/StudentDashboard">Student Dashboard</a></li>
+                        <li class="active"><a asp-page="/StudentDashboard">Student Dashboard</a></li>
                         <li><a asp-page="/LogOut">Log Out</a></li>
                     }
                     else

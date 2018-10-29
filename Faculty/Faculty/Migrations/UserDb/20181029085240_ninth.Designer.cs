@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Faculty.Migrations.CourseResourceDb
+namespace Faculty.Migrations.UserDb
 {
-    [DbContext(typeof(CourseResourceDbContext))]
-    [Migration("20181023135905_InitialResource")]
-    partial class InitialResource
+    [DbContext(typeof(UserDbContext))]
+    [Migration("20181029085240_ninth")]
+    partial class ninth
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -17,24 +17,26 @@ namespace Faculty.Migrations.CourseResourceDb
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.1.4-rtm-31024");
 
-            modelBuilder.Entity("Faculty.Models.CourseResource", b =>
+            modelBuilder.Entity("Faculty.Models.User", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("CourseID");
+                    b.Property<string>("ConfirmPassword")
+                        .IsRequired();
 
-                    b.Property<string>("CourseName");
+                    b.Property<string>("EmailID")
+                        .IsRequired();
 
-                    b.Property<string>("ResourceLink");
+                    b.Property<string>("FullName")
+                        .IsRequired();
 
-                    b.Property<string>("ResourceTitle");
-
-                    b.Property<string>("SubmissionDirectoryLink");
+                    b.Property<string>("Password")
+                        .IsRequired();
 
                     b.HasKey("ID");
 
-                    b.ToTable("Resources");
+                    b.ToTable("Users");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,0 +1,104 @@
+﻿@page
+@model Faculty.Pages.CourseRegistrationModel
+@{
+    Layout = "CourseLayout";
+    ViewData["Title"] = Model.CurrentCourse.CourseCode + ": " + Model.CurrentCourse.CourseTitle;
+    ViewData["SemesterYear"] = Model.CurrentCourse.CourseSemester + " Semester " + Model.CurrentCourse.CourseYear;
+}
+
+<div class="row">
+    <div class="col-sm-3 col-md-2 sidebar">
+        <ul class="nav nav-sidebar">
+            <li><a asp-page="/Course" asp-route-id="@Model.CurrentCourse.ID">Introduction</a></li>
+            <li><a asp-page="/CourseResources" asp-route-id="@Model.CurrentCourse.ID">Resources</a></li>
+            <li><a asp-page="/Assignments" asp-route-id="@Model.CurrentCourse.ID">Assignments</a></li>
+            <li><a asp-page="/Exams" asp-route-id="@Model.CurrentCourse.ID">Exams</a></li>
+            <li class="active"><a asp-page="/CourseRegistration" asp-route-id="@Model.CurrentCourse.ID">Register For Course</a></li>
+        </ul>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <ul class="nav nav-sidebar">
+            <li><a asp-page="/AllCourses">Other Courses</a></li>
+            <li><a asp-page="/Index">Go to Home Page</a></li>
+            @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+            {
+                <li><a asp-page="/AdminDashboard">Admin Dashboard</a></li>
+                <li><a asp-page="/LogOut">Log Out</a></li>
+            }
+            else if (User.Identity.IsAuthenticated && User.IsInRole("Student"))
+            {
+                <li><a asp-page="/StudentDashboard">Student Dashboard</a></li>
+                <li><a asp-page="/LogOut">Log Out</a></li>
+            }
+            else
+            {
+                <li><a asp-page="/Login">Login</a></li>
+            }
+        </ul>
+    </div>
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <h2 class="page-header text-center">@(Model.CurrentCourse.CourseCode + ": " + Model.CurrentCourse.CourseTitle)</h2>
+        @if (User.Identity.IsAuthenticated && User.IsInRole("Student"))
+        {
+            @if (Model.IfOver == false)
+            {
+                @if (Model.CourseStatus == "Apply")
+                {
+                    <br />
+                    <br />
+                    <p class="text-center"><a asp-page="/Enroll" asp-route-id="@Model.CurrentCourse.ID" class="btn btn-sm" style="background-color:#34495e;color:#FFFFFF;">Click Here</a> to enroll in this course.</p>
+                }
+                else if (Model.CourseStatus == "Approved")
+                {
+                    <br />
+                    <br />
+                    <p class="text-center text-success">Your enrollment request has been approved.</p>
+                }
+                else if (Model.CourseStatus == "Registered")
+                {
+                    <br />
+                    <br />
+                    <p class="text-center text-info">Your enrollment request is pending for faculty approval.</p>
+                }
+                else
+                {
+                    <br />
+                    <br />
+                    <p class="text-center text-danger">Your enrollment request has been declined.</p>
+                }
+            }
+            else
+            {
+                <br />
+                <br />
+                <p class="text-center text-danger">Course registration Deadline is Over.</p>
+            }
+        }
+        else
+        {
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <p class="text-danger text-center">You Can View This Page Only If You Are Logged In.</p>
+            <br />
+            <div class="text-center">
+                <a class="btn btn-default" asp-page="/Login">Login</a>
+
+            </div>
+        }
+
+    </div>
+
+</div>
+

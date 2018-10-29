@@ -21,22 +21,30 @@
         <table class="table table-condensed table-hover">
             <tr>
                 <th>S.No.</th>
+                <th>Roll Number</th>
+                <th>Name</th>
                 <th>Submission DateTime</th>
                 <th></th>
             </tr>
             @for (int i = 0; i < Model.SubmissionList.Count; i++)
             {
-                <tr>
-                    <td>
-                        @(i + 1).
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => Model.SubmissionList[i].DateTime)
-                    </td>
-                    <td>
-                        <a href="@Model.SubmissionList[i].SubmissionLink" target="_blank">View Submission</a>
-                    </td>
-                </tr>
+            <tr>
+                <td>
+                    @(i + 1).
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.SubmissionList[i].RollNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.SubmissionList[i].SubmittedBy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.SubmissionList[i].DateTime)
+                </td>
+                <td>
+                    <a href="@Model.SubmissionList[i].SubmissionLink" target="_blank">View Submission</a>
+                </td>
+            </tr>
             }
         </table>
     </div>

@@ -1,33 +1,32 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Faculty.Migrations.CourseResourceDb
+namespace Faculty.Migrations.UserDb
 {
-    public partial class InitialResource : Migration
+    public partial class ninth : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Resources",
+                name: "Users",
                 columns: table => new
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    CourseID = table.Column<int>(nullable: false),
-                    CourseName = table.Column<string>(nullable: true),
-                    ResourceTitle = table.Column<string>(nullable: true),
-                    ResourceLink = table.Column<string>(nullable: true),
-                    SubmissionDirectoryLink = table.Column<string>(nullable: true)
+                    FullName = table.Column<string>(nullable: false),
+                    Password = table.Column<string>(nullable: false),
+                    ConfirmPassword = table.Column<string>(nullable: false),
+                    EmailID = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Resources", x => x.ID);
+                    table.PrimaryKey("PK_Users", x => x.ID);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Resources");
+                name: "Users");
         }
     }
 }

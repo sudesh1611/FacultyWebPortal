@@ -40,13 +40,17 @@ namespace Faculty.Pages
                 course = await courseDbContext.Courses.SingleOrDefaultAsync(m => m.ID == id);
                 if (!String.IsNullOrEmpty(course.TeachingAssistants))
                 {
-                    var tempList = JsonConvert.DeserializeObject<List<string>>(course.TeachingAssistants);
+                    var tempList = new List<string>();
+                    tempList = JsonConvert.DeserializeObject<List<string>>(course.TeachingAssistants);
                     course.TeachingAssistants = String.Empty;
-                    for (int i = 0; i <= tempList.Count - 2; i++)
+                    if (tempList.Count > 0)
                     {
-                        course.TeachingAssistants = course.TeachingAssistants + tempList[i] + ";";
+                        for (int i = 0; i <= tempList.Count - 2; i++)
+                        {
+                            course.TeachingAssistants = course.TeachingAssistants + tempList[i] + ";";
+                        }
+                        course.TeachingAssistants = course.TeachingAssistants + tempList[tempList.Count - 1];
                     }
-                    course.TeachingAssistants = course.TeachingAssistants + tempList[tempList.Count - 1];
                 }
             }
         }

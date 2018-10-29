@@ -42,13 +42,23 @@ namespace Faculty.Pages
         {
             if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
             {
+                List<int> StudentsApproved = new List<int>();
+                List<int> StudentsApplied = new List<int>();
+                List<int> StudentsDeclined = new List<int>();
                 if (ModelState.IsValid)
                 {
                     string emaiID = User.FindFirst(ClaimTypes.Email).Value;
                     var supervisor = await profileDbContext.Profiles.SingleOrDefaultAsync(m => m.LoginEmailID == emaiID);
                     course.SupervisorID = supervisor.ID;
-                    var tempString = course.TeachingAssistants.Split(';').ToList();
+                    List<string> tempString = new List<string>();
+                    if(!String.IsNullOrEmpty(course.TeachingAssistants))
+                    {
+                        tempString = course.TeachingAssistants.Split(';').ToList();
+                    }
                     course.TeachingAssistants = JsonConvert.SerializeObject(tempString);
+                    course.StudentsApproved = JsonConvert.SerializeObject(StudentsApproved);
+                    course.StudentRegistered = JsonConvert.SerializeObject(StudentsApplied);
+                    course.StudentDeclined = JsonConvert.SerializeObject(StudentsDeclined);
                     await courseDbContext.Courses.AddAsync(course);
                     await courseDbContext.SaveChangesAsync();
                     return RedirectToPage("/EditCoursesPage");

@@ -2,7 +2,7 @@
 
 namespace Faculty.Migrations.SubmissionDb
 {
-    public partial class InitSubmission : Migration
+    public partial class eighth : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,7 +14,9 @@ namespace Faculty.Migrations.SubmissionDb
                         .Annotation("Sqlite:Autoincrement", true),
                     AssignmentID = table.Column<int>(nullable: false),
                     DateTime = table.Column<string>(nullable: true),
-                    SubmissionLink = table.Column<string>(nullable: true)
+                    SubmissionLink = table.Column<string>(nullable: true),
+                    SubmittedBy = table.Column<string>(nullable: true),
+                    RollNumber = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

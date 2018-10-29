@@ -8,6 +8,23 @@
     ViewData["College"] = Model.CurrentProfile.College;
 }
 
+
+@section JavaScripts {
+    <script>
+        function DegreeChanged() {
+            var x = document.getElementById("test");
+            var y = document.getElementById("testt");
+
+            if (x.value === "Ongoing") {
+                y.style.display = 'none';
+            }
+            else {
+                y.style.display = 'block';
+            }
+        }
+    </script>
+}
+
 @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
 {
     <h2 class="text-center" style="font-family:'Comic Sans MS';">Edit Phd Scholar</h2>
@@ -27,7 +44,7 @@
         </div>
         <div class="row">
             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 form-group">
-                <label asp-for="Student.ThesisTitle">Thesis Title:</label>
+                <label asp-for="Student.ThesisTitle">Topic/Research Area:</label>
                 <input type="text" class="form-control" asp-for="Student.ThesisTitle" required />
                 <span asp-validation-for="Student.ThesisTitle" class="text-danger"></span>
             </div>
@@ -35,14 +52,14 @@
         <div class="row">
             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 form-group">
                 <label asp-for="Student.DegreeStatus">Degree Status (Complete/Ongoing):</label>
-                <select class="form-control" asp-for="Student.DegreeStatus">
+                <select id="test" class="form-control" asp-for="Student.DegreeStatus">
                     <option value="Ongoing">Ongoing</option>
                     <option value="Completed">Completed</option>
                 </select>
                 <span asp-validation-for="Student.DegreeStatus" class="text-danger"></span>
             </div>
         </div>
-        <div class="row">
+        <div class="row" id="testt">
             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 form-group">
                 <label asp-for="Student.DegreeCompletion">Degree Completion Year(if Completed):</label>
                 <input type="text" class="form-control" asp-for="Student.DegreeCompletion" />
