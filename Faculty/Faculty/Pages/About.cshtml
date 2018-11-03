@@ -8,10 +8,148 @@
     ViewData["College"] = Model.CurrentProfile.College;
 }
 
-<br /><br /><br /><br /><br /><br /><br /><br />
-<h1 class="text-center text-capitalize" style="color:lightgray; font-size:6em;">Oops!</h1>
-<h4 class="text-center text-capitalize" style="color:lightgray;">This page is under Construction. Come back later.</h4>
 <br />
-<div class="text-center">
-    @*<a asp-page="/Index" class="btn" style="background-color:#34495e;color:#FFFFFF;">Home</a>*@
+<div class="row text-center">
+    <div class="col-lg-2 col-md-2 col-xs-4 col-sm-4 col-lg-offset-5 col-md-offset-5 col-sm-offset-4 col-xs-offset-4 text-center">
+        <a href="@Model.CurrentProfile.ProfilePic"><img src="@Model.CurrentProfile.ProfilePic" alt="Profile Pic" class="img-rounded img-responsive"></a>
+    </div>
 </div>
+<br /><br /><br />
+
+
+<div class="row">
+    <h4 class="col-lg-4 col-md-4 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1" style="font-family:'Comic Sans MS';font-weight:bold;">Professional Details</h4>
+</div>
+<div class="row">
+    <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1">
+        <label style="font-weight:normal;text-transform:capitalize;"><strong>Full Name:</strong>@(" " + Model.CurrentProfile.FullName)</label>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1">
+        <label style="font-weight:normal;text-transform:capitalize;"><strong>Designation:</strong>@(" " + Model.CurrentProfile.Designation)</label>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1">
+        <label style="font-weight:normal;text-transform:capitalize;"><strong>Department:</strong>@(" " + Model.CurrentProfile.Department)</label>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1">
+        <label style="font-weight:normal;text-transform:capitalize;"><strong>College:</strong>@(" " + Model.CurrentProfile.College)</label>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1">
+        <label style="font-weight:normal;text-transform:capitalize;"><strong>Biography:</strong>@(" " + Model.CurrentProfile.ShortBio)</label>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1">
+        <label style="font-weight:normal;text-transform:capitalize;"><strong>GoogleScholarLink:</strong><a href="@(" " + Model.CurrentProfile.GoogleScholarLink)" target="_blank">@(" " + Model.CurrentProfile.GoogleScholarLink)</a></label>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-11 col-md-11 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1">
+        <hr />
+    </div>
+</div>
+<div class="row">
+    <h4 class="col-lg-4 col-md-4 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1" style="font-family:'Comic Sans MS';font-weight:bold;">Academic Background</h4>
+</div>
+<div class="row">
+    <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1">
+        <label style="font-weight:normal;text-transform:capitalize;"><strong>Undergraduate Degree:</strong>@(" " + Model.CurrentProfile.UnderGraduateDegreeDetails)</label>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1">
+        <label style="font-weight:normal;text-transform:capitalize;"><strong>PostGraduate Degree:</strong>@(" " + Model.CurrentProfile.PostGraduateDegreeDetails)</label>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1">
+        <label style="font-weight:normal;text-transform:capitalize;"><strong>Phd Degree:</strong>@(" " + Model.CurrentProfile.DoctoratesDegreeDetails)</label>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-lg-11 col-md-11 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1 form-group-sm ">
+        <hr />
+    </div>
+</div>
+
+
+<div class="row">
+    <h4 class="col-lg-4 col-md-4 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1" style="font-family:'Comic Sans MS';font-weight:bold;">Contact Details</h4>
+</div>
+<div class="row">
+    <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1">
+        <label style="font-weight:normal;text-transform:capitalize;"><strong>Email:</strong>@(" " + Model.CurrentProfile.EmailID)</label>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1">
+        <label style="font-weight:normal;text-transform:capitalize;"><strong>Mobile Number:</strong>@(" " + Model.CurrentProfile.MobileNumber)</label>
+    </div>
+</div>
+@*
+
+    <div class="row">
+        <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1 form-group ">
+            <label asp-for="MyProfile.AreasOfInterest" style="font-weight:normal;">Areas of Interest(seprated by semicolon ; ):</label>
+            <textarea rows="2" type="text" class="form-control" asp-for="MyProfile.AreasOfInterest" required></textarea>
+            <span asp-validation-for="MyProfile.AreasOfInterest" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1 form-group ">
+            <label asp-for="MyProfile.Achievements" style="font-weight:normal;">Achievements(seprated by semicolon ;):</label>
+            <textarea rows="2" type="text" class="form-control" asp-for="MyProfile.Achievements" required></textarea>
+            <span asp-validation-for="MyProfile.Achievements" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1 form-group-sm ">
+            <label asp-for="MyProfile.ProfessionalExperience" style="font-weight:normal;">Length of Professional Experience:</label>
+            <input type="text" class="form-control" asp-for="MyProfile.ProfessionalExperience" required />
+            <span asp-validation-for="MyProfile.ProfessionalExperience" class="text-danger"></span>
+        </div>
+    </div>*@
+
+
+@*<br />
+
+
+
+
+    <br />
+    <div class="row">
+        <div class="col-lg-11 col-md-11 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1 form-group-sm ">
+            <hr />
+        </div>
+    </div>
+
+
+    <div class="row">
+        <h4 class="col-lg-4 col-md-4 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1" style="font-family:'Comic Sans MS';font-weight:bold;">Contact Details</h4>
+    </div>
+    <div class="row">
+        <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1 form-group-sm ">
+            <label asp-for="MyProfile.EmailID" style="font-weight:normal;">Email ID:</label>
+            <input type="email" class="form-control" asp-for="MyProfile.EmailID" required />
+            <span asp-validation-for="MyProfile.EmailID" class="text-danger"></span>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1 form-group-sm ">
+            <label asp-for="MyProfile.MobileNumber" style="font-weight:normal;">Mobile Number:</label>
+            <input type="tel" class="form-control" asp-for="MyProfile.MobileNumber" required />
+            <span asp-validation-for="MyProfile.MobileNumber" class="text-danger"></span>
+        </div>
+    </div>*@
+
+<br /><br />
+

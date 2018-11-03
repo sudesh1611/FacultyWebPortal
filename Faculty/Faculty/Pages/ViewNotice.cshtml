@@ -1,0 +1,31 @@
+﻿@page
+@model Faculty.Pages.ViewNoticeModel
+@{
+    Layout = "MainLayout";
+    ViewData["Title"] = "Notices";
+    ViewData["Name"] = Model.CurrentProfile.FullName;
+    ViewData["Department"] = Model.CurrentProfile.Department;
+    ViewData["College"] = Model.CurrentProfile.College;
+}
+
+<h2 class="text-center" style="font-family:'Comic Sans MS';">Notice/Announcement</h2>
+<br />
+<div class="row">
+    <div class="col-md-10 col-lg-10 col-md-offset-1 col-lg-offset-1 col-sm-12 col-xs-12">
+        <h4 class="text-center" style="font-family:'Comic Sans MS';">@Model.CurrentNotice.NoticeShortTitle</h4>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-10 col-lg-10 col-md-offset-1 col-lg-offset-1 col-sm-12 col-xs-12">
+        <p class="text-right">@Model.CurrentNotice.NoticeDate</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-10 col-lg-10 col-md-offset-1 col-lg-offset-1 col-sm-12 col-xs-12">
+        <p class="text-justify">@Model.CurrentNotice.NoticeDescription</p>
+    </div>
+</div>
+
+

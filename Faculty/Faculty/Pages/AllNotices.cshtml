@@ -1,0 +1,32 @@
+﻿@page
+@model Faculty.Pages.AllNoticesModel
+@{
+    Layout = "MainLayout";
+    ViewData["Title"] = "Home page";
+    ViewData["Name"] = Model.CurrentProfile.FullName;
+    ViewData["Department"] = Model.CurrentProfile.Department;
+    ViewData["College"] = Model.CurrentProfile.College;
+}
+
+<h2 class="text-center" style="font-family:'Comic Sans MS';">Notices/Announcements</h2>
+<hr />
+<br />
+<div class="row">
+    <div class="col-md-2 col-lg-2 col-md-offset-3 col-lg-offset-3 col-sm-12 col-xs-12">
+        <p class="text-left"><strong>Date of Issuing</strong></p>
+    </div>
+    <div class="col-md-6 col-lg-6  col-sm-12 col-xs-12">
+        <p class="text-left"><strong>Notice/Announcement Title</strong></p>
+    </div>
+</div>
+@foreach (var notice in Model.NoticesList)
+{
+<div class="row">
+    <div class="col-md-2 col-lg-2 col-md-offset-3 col-lg-offset-3 col-sm-12 col-xs-12">
+        <p class="text-left">@notice.NoticeDate</p>
+    </div>
+    <div class="col-md-6 col-lg-6  col-sm-12 col-xs-12">
+        <p class="text-left"><a asp-page="/ViewNotice" asp-route-id="@notice.ID" target="_blank">@notice.NoticeShortTitle</a></p>
+    </div>
+</div>
+}

@@ -8,10 +8,160 @@
     ViewData["College"] = Model.CurrentProfile.College;
 }
 
-<br /><br /><br /><br /><br /><br /><br /><br />
-<h1 class="text-center text-capitalize" style="color:lightgray; font-size:6em;">Oops!</h1>
-<h4 class="text-center text-capitalize" style="color:lightgray;">This page is under Construction. Come back later.</h4>
-<br />
-<div class="text-center">
-    @*<a asp-page="/Index" class="btn" style="background-color:#34495e;color:#FFFFFF;">Home</a>*@
+@*<br /><br /><br /><br /><br /><br /><br /><br />
+    <h1 class="text-center text-capitalize" style="color:lightgray; font-size:6em;">Oops!</h1>
+    <h4 class="text-center text-capitalize" style="color:lightgray;">This page is under Construction. Come back later.</h4>
+    <br />
+    <div class="text-center">
+    </div>*@
+<div class="row">
+    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+        <br />
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-xs-12 text-center">
+                <div class="jumbotron">
+                    <h2 class="text-center">
+                        <strong>
+                            Welcome
+                            <br />
+
+                            To
+                            <br />
+                            Student's
+                            <br />
+                            Resource Webpage
+                        </strong>
+                    </h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-xs-12 text-center">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                            <h3 class="panel-title text-capitalize" style="font-family:'Comic Sans MS';font-weight:bold;">Courses</h3>
+                        </div>
+
+
+
+
+                    <div class="panel-body text-justify">
+
+                            <table class="table table-hover" style="margin-top:-15px;">
+                                <tr>
+                                    <th>S.No.</th>
+                                    <th>Course Code</th>
+                                    <th>Course Title</th>
+                                    <th>Semester</th>
+                                    <th>Year</th>
+                                    <th></th>
+                                </tr>
+                                @for (int i = 0; i < Model.CoursesList.Count; i++)
+                                {
+                                    <tr>
+                                        <td>
+                                            @(i + 1).
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => Model.CoursesList[i].CourseCode)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => Model.CoursesList[i].CourseTitle)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => Model.CoursesList[i].CourseSemester)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => Model.CoursesList[i].CourseYear)
+                                        </td>
+                                        <td>
+                                            <a asp-page="/Course" asp-route-id="@Model.CoursesList[i].ID">View Course</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
+                        </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12">
+        <br />
+
+        <div class="row">
+            <div class="col-lg-11 col-md-11 col-xs-12 text-center">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title text-capitalize" style="font-family:'Comic Sans MS';font-weight:bold;">Notices/Announcements</h3>
+                    </div>
+                    @if (Model.NoticesList.Count < 1)
+                    {
+                        <div class="panel-body text-justify">
+                            <ul></ul>
+                        </div>
+                    }
+                    else
+                    {
+                        @if (Model.NoticesList.Count <= 4)
+                        {
+                            <div class="panel-body text-justify">
+                                <ul>
+                                    @for (int i = 0; i < Model.NoticesList.Count; i++)
+                                    {
+                                        <li style="padding-bottom:5px;"><a asp-page="/ViewNotice" asp-route-id="@Model.NoticesList[i].ID">@Model.NoticesList[i].NoticeShortTitle</a></li>
+                                    }
+                                </ul>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="panel-body text-justify">
+                                <ul>
+                                    @for (int i = 0; i < 4; i++)
+                                    {
+                                        <li style="padding-bottom:5px;"><a asp-page="/ViewNotice" asp-route-id="@Model.NoticesList[i].ID">@Model.NoticesList[i].NoticeShortTitle</a></li>
+                                    }
+
+                                </ul>
+                                <p class="text-right"><a asp-page="/AllNotices" class="text-danger">>View All Notices</a></p>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+
+        <br />
+
+        <div class="row">
+            <div class="col-lg-11 col-md-11 col-xs-12 text-center">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title text-capitalize" style="font-family:'Comic Sans MS';font-weight:bold;">Assignments</h3>
+                    </div>
+                    @if (Model.AssignmentsList.Count < 1)
+                    {
+                        <div class="panel-body text-justify">
+                            <ul></ul>
+                        </div>
+                    }
+                    else
+                    {
+
+                        <div class="panel-body text-justify">
+                            <ul>
+                                @foreach (var assignment in Model.AssignmentsList)
+                                {
+                                    <li style="padding-bottom:5px;"><a asp-page="/ViewAssignment" asp-route-id="@assignment.ID">@assignment.AssignmentTitle</a></li>
+                                }
+                            </ul>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+
+    </div>
 </div>

@@ -1,0 +1,36 @@
+﻿.header {
+    text-align: center;
+    color: #4B2E83;
+    padding-top: 10px;
+}
+
+.subheading {
+    text-align: left;
+    color: black;
+    padding-bottom:5px;
+}
+
+.mainheading {
+    text-align: left;
+    color: black;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+td, th {
+    border: 1px solid #EEEEEE;
+    padding: 15px;
+    font-size: 18px;
+    text-align: center;
+}
+
+table th {
+    background-color: #4B2E83;
+    color: #FFFFFF;
+    padding: 25px;
+    padding-bottom:30px;
+    font-size: 20px;
+}

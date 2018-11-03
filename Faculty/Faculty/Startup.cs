@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using DinkToPdf;
+using DinkToPdf.Contracts;
 using Faculty.Data;
 using Faculty.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -34,6 +36,9 @@ namespace Faculty
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.Configure<Assignment>(Configuration);
+            services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
+            var context = new CustomAssemblyLoadContext();
+            context.LoadUnmanagedLibrary(Path.Combine(Directory.GetCurrentDirectory(), "libwkhtmltox.dll"));
             services.AddDbContext<UserDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDbContext<ProfileDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDbContext<PhdStudentsDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
@@ -43,6 +48,7 @@ namespace Faculty
             services.AddDbContext<CourseResourceDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDbContext<PublicationDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDbContext<StudentDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<NoticeDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
