@@ -7,82 +7,34 @@
     ViewData["Department"] = Model.CurrentProfile.Department;
     ViewData["College"] = Model.CurrentProfile.College;
 }
-
-@*<br /><br /><br /><br /><br /><br /><br /><br />
-    <h1 class="text-center text-capitalize" style="color:lightgray; font-size:6em;">Oops!</h1>
-    <h4 class="text-center text-capitalize" style="color:lightgray;">This page is under Construction. Come back later.</h4>
-    <br />
-    <div class="text-center">
-    </div>*@
 <div class="row">
     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-        <br />
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-xs-12 text-center">
-                <div class="jumbotron">
-                    <h2 class="text-center">
-                        <strong>
-                            Welcome
-                            <br />
-
-                            To
-                            <br />
-                            Student's
-                            <br />
-                            Resource Webpage
-                        </strong>
-                    </h2>
-                </div>
-            </div>
+        <h3 style="margin-left:-20px;margin-top:10px;font-family:'Comic Sans MS';color:#4B2E83;" class="lead">Welcome to my Homepage</h3>
+        <div class="row text-center">
+            <img src="@Model.CurrentProfile.ProfilePic" class="img-rounded" height="170"/>
         </div>
         <div class="row">
-            <div class="col-lg-12 col-md-12 col-xs-12 text-center">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                            <h3 class="panel-title text-capitalize" style="font-family:'Comic Sans MS';font-weight:bold;">Courses</h3>
-                        </div>
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
 
-
-
-
-                    <div class="panel-body text-justify">
-
-                            <table class="table table-hover" style="margin-top:-15px;">
-                                <tr>
-                                    <th>S.No.</th>
-                                    <th>Course Code</th>
-                                    <th>Course Title</th>
-                                    <th>Semester</th>
-                                    <th>Year</th>
-                                    <th></th>
-                                </tr>
-                                @for (int i = 0; i < Model.CoursesList.Count; i++)
-                                {
-                                    <tr>
-                                        <td>
-                                            @(i + 1).
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => Model.CoursesList[i].CourseCode)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => Model.CoursesList[i].CourseTitle)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => Model.CoursesList[i].CourseSemester)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => Model.CoursesList[i].CourseYear)
-                                        </td>
-                                        <td>
-                                            <a asp-page="/Course" asp-route-id="@Model.CoursesList[i].ID">View Course</a>
-                                        </td>
-                                    </tr>
-                                }
-                            </table>
-                        </div>
-
-                </div>
+            </div>
+            <div class="col-lg-8 col-md-8 col-xs-12 col-sm-12" style="display:block;background: #F9F9F9;font-size: 0.9em;margin: 18px 0px 0px 0px;padding: 10px 24px 10px 24px;border-radius: 7px;box-shadow: 0px 0px 12px rgba(0, 0, 0, .12);box-sizing: border-box;">
+                <span class="glyphicon glyphicon-briefcase" aria-hidden="true" style="position: absolute;top: -16px;left: calc(50% - 16px);display: inline-block;background: #E9E9E9;min-width: 32px;line-height: 32px;text-align: center;margin: 0px auto;border-radius: 50%;">
+                </span>
+                <br />
+                <p style="color:rgba(0, 0, 0, 0.6);font-size:1.4em;" class="text-center"><strong>@Model.CurrentProfile.FullName</strong></p>
+                <p style="color:rgba(0, 0, 0, 0.6);margin-bottom:0px;" class="text-center"><strong>@Model.CurrentProfile.Designation</strong>, @(" " + Model.CurrentProfile.Department)</p>
+                <p style="color:rgba(0, 0, 0, 0.6);" class="text-center">@Model.CurrentProfile.College</p>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" >
+                <article>
+                    <div class="text-justify" style="color:rgba(0, 0, 0, 0.6);margin-right: 4%;padding-top: 18px;padding-bottom: 18px;font-family:'Roboto Slab',serif;font-size: 1.2em;
+    line-height: 1.50;">
+                        @Model.CurrentProfile.ShortBio
+                    </div>
+                </article>
             </div>
         </div>
     </div>
@@ -91,14 +43,12 @@
 
         <div class="row">
             <div class="col-lg-11 col-md-11 col-xs-12 text-center">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title text-capitalize" style="font-family:'Comic Sans MS';font-weight:bold;">Notices/Announcements</h3>
-                    </div>
+                <div class="panel panel-default" style="box-shadow: 0px 0px 12px rgba(0, 0, 0, .12);border-radius: 3px; box-sizing:border-box;">
+                    <h3 class="text-center" style="color:#4B2E83;font-family:'Raleway', sans-serif;margin-bottom:0px;">Notices</h3>
                     @if (Model.NoticesList.Count < 1)
                     {
                         <div class="panel-body text-justify">
-                            <ul></ul>
+                            <p style="margin-left:10px;margin-bottom:3px;margin-right:5px;"><a style="color:#A597C1;font-family:'Roboto Slab', serif;font-size:1.15em;" asp-page="/ViewNotice"> </a></p>
                         </div>
                     }
                     else
@@ -106,25 +56,21 @@
                         @if (Model.NoticesList.Count <= 4)
                         {
                             <div class="panel-body text-justify">
-                                <ul>
-                                    @for (int i = 0; i < Model.NoticesList.Count; i++)
-                                    {
-                                        <li style="padding-bottom:5px;"><a asp-page="/ViewNotice" asp-route-id="@Model.NoticesList[i].ID">@Model.NoticesList[i].NoticeShortTitle</a></li>
-                                    }
-                                </ul>
+                                @for (int i = 0; i < Model.NoticesList.Count; i++)
+                                {
+                                    <p style="margin-left:10px;margin-bottom:3px;margin-right:5px;"><a style="color:#A597C1;font-family:'Roboto Slab', serif;font-size:1.15em;" asp-page="/ViewNotice" asp-route-id="@Model.NoticesList[i].ID">@Model.NoticesList[i].NoticeShortTitle</a></p>
+                                }
                             </div>
                         }
                         else
                         {
                             <div class="panel-body text-justify">
-                                <ul>
-                                    @for (int i = 0; i < 4; i++)
-                                    {
-                                        <li style="padding-bottom:5px;"><a asp-page="/ViewNotice" asp-route-id="@Model.NoticesList[i].ID">@Model.NoticesList[i].NoticeShortTitle</a></li>
-                                    }
 
-                                </ul>
-                                <p class="text-right"><a asp-page="/AllNotices" class="text-danger">>View All Notices</a></p>
+                                @for (int i = 0; i < 4; i++)
+                                {
+                                    <p style="margin-left:10px;margin-bottom:3px;margin-right:5px;"><a style="color:#A597C1;font-family:'Roboto Slab', serif;font-size:1.15em;" asp-page="/ViewNotice" asp-route-id="@Model.NoticesList[i].ID">@Model.NoticesList[i].NoticeShortTitle</a></p>
+                                }
+                                <p style="margin-left:10px;margin-bottom:3px;margin-right:5px;"><a style="color:#A597C1;font-family:'Roboto Slab', serif;font-size:1.15em;" asp-page="/AllNotices" class="text-danger">View All Notices</a></p>
                             </div>
                         }
                     }
@@ -136,32 +82,27 @@
 
         <div class="row">
             <div class="col-lg-11 col-md-11 col-xs-12 text-center">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title text-capitalize" style="font-family:'Comic Sans MS';font-weight:bold;">Assignments</h3>
-                    </div>
+                <div class="panel panel-default" style="box-shadow: 0px 0px 12px rgba(0, 0, 0, .12);border-radius: 3px; box-sizing:border-box;">
+                    <h3 class="text-center" style="color:#4B2E83;font-family:'Raleway', sans-serif;margin-bottom:0px;">Assignments</h3>
                     @if (Model.AssignmentsList.Count < 1)
                     {
                         <div class="panel-body text-justify">
-                            <ul></ul>
+                            <p style="margin-left:10px;margin-bottom:3px;margin-right:5px;"><a style="color:#A597C1;font-family:'Roboto Slab', serif;font-size:1.15em;" asp-page="/ViewNotice"> </a></p>
                         </div>
                     }
                     else
                     {
 
                         <div class="panel-body text-justify">
-                            <ul>
-                                @foreach (var assignment in Model.AssignmentsList)
-                                {
-                                    <li style="padding-bottom:5px;"><a asp-page="/ViewAssignment" asp-route-id="@assignment.ID">@assignment.AssignmentTitle</a></li>
-                                }
-                            </ul>
+                            @foreach (var assignment in Model.AssignmentsList)
+                            {
+                                <p style="margin-left:10px;margin-bottom:3px;margin-right:5px;"><a style="color:#A597C1;font-family:'Roboto Slab', serif;font-size:1.15em;" asp-page="/ViewAssignment" asp-route-id="@assignment.ID">@assignment.AssignmentTitle</a></p>
+
+                            }
                         </div>
                     }
                 </div>
             </div>
         </div>
-
-
     </div>
 </div>
