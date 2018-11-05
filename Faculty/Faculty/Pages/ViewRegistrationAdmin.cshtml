@@ -13,11 +13,12 @@
     <h2 class="text-center" style="font-family:'Comic Sans MS';">@(Model.CurrentCourse.CourseCode + ": Registrations")</h2>
     <hr />
 
-    <div class="row">
-        <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12 col-lg-offset-4 col-md-offset-4 text-center">
-            <a style="background-color:#34495e;color:#FFFFFF;" asp-page="/ExportRegistrationList" asp-route-id="@Model.CurrentCourse.ID" target="_blank" class="btn">Print Registrations List</a>
-        </div>
-    </div>
+    @* Uncomment following lines to able to generate pdf files. Remember to uncomment loadAssembly file in Startup.cs*@
+    @*<div class="row">
+            <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12 col-lg-offset-4 col-md-offset-4 text-center">
+                <a style="background-color:#34495e;color:#FFFFFF;" asp-page="/ExportRegistrationList" asp-route-id="@Model.CurrentCourse.ID" target="_blank" class="btn">Print Registrations List</a>
+            </div>
+        </div>*@
     <br />
     <div class="row">
         <h4 class="text-left" style="font-family:'Comic Sans MS';">Registered Students List</h4>

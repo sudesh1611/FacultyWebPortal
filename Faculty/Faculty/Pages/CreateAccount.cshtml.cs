@@ -32,12 +32,21 @@ namespace Faculty.Pages
         public async Task<IActionResult> OnGetAsync()
         {
             CurrentProfile = await profileDbContext.Profiles.SingleOrDefaultAsync(m => m.ID == 1);
-            return RedirectToPage("/NotFound");
+            if(CurrentProfile!=null)
+            {
+                return RedirectToPage("/NotFound");
+            }
+            return Page();
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+            CurrentProfile = await profileDbContext.Profiles.SingleOrDefaultAsync(m => m.ID == 1);
+            if (CurrentProfile != null)
+            {
+                return RedirectToPage("/NotFound");
+            }
+            //if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
             {
                 if(ModelState.IsValid)
                 {
@@ -100,10 +109,10 @@ namespace Faculty.Pages
                     return Page();
                 }
             }
-            else
-            {
-                return RedirectToPage("/Index");
-            }
+            //else
+            //{
+            //    return RedirectToPage("/Index");
+            //}
         }
     }
 }

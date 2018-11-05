@@ -36,7 +36,7 @@ namespace Faculty.Pages
                 var newResource = CurrentResource;
                 if (CurrentResource != null)
                 {
-                    var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Resources", "Resource" + CurrentResource.ID);
+                    var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot","Resources", "Resource" + CurrentResource.ID);
                     if (!Directory.Exists(path))
                     {
                         Directory.CreateDirectory(path);

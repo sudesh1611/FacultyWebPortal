@@ -38,7 +38,10 @@ namespace Faculty
             services.Configure<Assignment>(Configuration);
             services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
             var context = new CustomAssemblyLoadContext();
-            context.LoadUnmanagedLibrary(Path.Combine(Directory.GetCurrentDirectory(), "libwkhtmltox.dll"));
+
+            //DOTNET is unable to load following dlls in linux x64
+            //For Windows uncomment the following line and uncomment lines in Pages ViewAssignmentSubmissions and ViewRegistrationAdmin
+            //context.LoadUnmanagedLibrary(Path.Combine(Directory.GetCurrentDirectory(), "libwkhtmltox.dll"));
             services.AddDbContext<UserDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDbContext<ProfileDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDbContext<PhdStudentsDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));

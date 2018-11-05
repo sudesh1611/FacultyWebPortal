@@ -37,7 +37,7 @@ namespace Faculty.Pages
                 var newAssignment = CurrentAssignment;
                 if(CurrentAssignment!=null)
                 {
-                    var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Assignments", "Assignment" + CurrentAssignment.ID);
+                    var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot","Assignments", "Assignment" + CurrentAssignment.ID);
                     if (!Directory.Exists(path))
                     {
                         Directory.CreateDirectory(path);

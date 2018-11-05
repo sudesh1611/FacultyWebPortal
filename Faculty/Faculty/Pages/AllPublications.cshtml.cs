@@ -34,8 +34,7 @@ namespace Faculty.Pages
                 PublicationsList = await publicationsDbContext.Publications.ToListAsync();
                 if(PublicationsList!=null)
                 {
-                    PublicationsList.OrderBy(m => m.PublicationYear);
-                    PublicationsList.Reverse();
+                    PublicationsList.OrderByDescending(m => m.PublicationYear);
                 }
             }
         }

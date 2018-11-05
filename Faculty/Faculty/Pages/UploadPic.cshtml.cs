@@ -28,7 +28,7 @@ namespace Faculty.Pages
 
             string emaiID = User.FindFirst(ClaimTypes.Email).Value;
             var profile = await profileDbContext.Profiles.SingleOrDefaultAsync(m => m.LoginEmailID == emaiID);
-            var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", profile.ID.ToString() + file.FileName);
+            var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot","images", profile.ID.ToString() + file.FileName);
 
             using (var stream = new FileStream(path, FileMode.Create))
             {

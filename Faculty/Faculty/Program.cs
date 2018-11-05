@@ -19,6 +19,7 @@ namespace Faculty
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+            .UseUrls("http://*:5045")
                 .UseStartup<Startup>();
     }
 }
