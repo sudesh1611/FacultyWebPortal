@@ -16,15 +16,22 @@ namespace Faculty.Pages
     {
         private readonly ProfileDbContext profileDbContext;
         public Profile CurrentProfile { set; get; }
+        public bool AccountPresent { get; set; }
         public ErrorModel(ProfileDbContext pdb)
         {
             profileDbContext = pdb;
             CurrentProfile = new Profile();
+            AccountPresent = true;
         }
 
         public async Task OnGetAsync()
         {
+            AccountPresent = true;
             CurrentProfile = await profileDbContext.Profiles.SingleOrDefaultAsync(m => m.ID == 1);
+            if(CurrentProfile==null)
+            {
+                AccountPresent = false;
+            }
         }
     }
 }

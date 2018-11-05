@@ -3,17 +3,37 @@
 @{
     Layout = "MainLayoutNotFound";
     ViewData["Title"] = "Error";
-    ViewData["Name"] = Model.CurrentProfile.FullName;
-    ViewData["Department"] = Model.CurrentProfile.Department;
-    ViewData["College"] = Model.CurrentProfile.College;
+    @if(Model.AccountPresent==false)
+    {
+        ViewData["Name"] = "";
+        ViewData["Department"] = "";
+        ViewData["College"] = "";
+    }
+    else
+    {
+        ViewData["Name"] = Model.CurrentProfile.FullName;
+        ViewData["Department"] = Model.CurrentProfile.Department;
+        ViewData["College"] = Model.CurrentProfile.College;
+    }
 }
 
 <br /><br /><br /><br /><br /><br /><br /><br /><br />
 <h1 class="text-center text-capitalize" style="color:lightgray; font-size:6em;">Oops!</h1>
 <h4 class="text-center text-capitalize" style="color:lightgray;">We've got a Problem</h4>
+@if (Model.AccountPresent == false)
+{
+    <h4 class="text-center text-capitalize" style="color:lightgray;">No Admin Account Found</h4>
+}
 <br />
 <div class="text-center">
-    <a asp-page="/Index" class="btn" style="background-color:#34495e;color:#FFFFFF;">Home</a>
+    @if (Model.AccountPresent == false)
+    {
+        <a asp-page="/CreateAccount" class="btn" style="background-color:#34495e;color:#FFFFFF;">Create Admin Account</a>
+    }
+    else
+    {
+        <a asp-page="/Index" class="btn" style="background-color:#34495e;color:#FFFFFF;">Home</a>
+    }
 </div>
 <br /><br />
 <br /><br /><br />
