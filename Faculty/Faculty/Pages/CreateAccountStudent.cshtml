@@ -55,7 +55,20 @@
     <div class="row">
         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 col-lg-offset-4 col-md-offset-4 form-group">
             <label asp-for="NewStudent.Degree">Degree and Program:</label>
-            <input type="text" class="form-control" asp-for="NewStudent.Degree" />
+            <select class="form-control" asp-for="NewStudent.Degree">
+                <option value="B.Tech CSE">B.Tech CSE</option>
+                <option value="B.Tech CSE-IS">B.Tech CSE-IS</option>
+                <option value="B.Tech IT">B.Tech IT</option>
+                <option value="M.Tech CSE">M.Tech CSE</option>
+                <option value="M.Tech CSE-IS">M.Tech CSE-IS</option>
+                <option value="M.Tech IT">M.Tech IT</option>
+                <option value="M.Tech(R) CSE">M.Tech(R) CSE</option>
+                <option value="M.Tech(R) CSE-IS">M.Tech(R) CSE-IS</option>
+                <option value="M.Tech(R) IT">M.Tech(R) IT</option>
+                <option value="B.Tech Other">B.Tech Other</option>
+                <option value="M.Tech Other">M.Tech Other</option>
+                <option value="Other">Other</option>
+            </select>
             <span asp-validation-for="NewStudent.Degree" class="text-danger"></span>
         </div>
     </div>

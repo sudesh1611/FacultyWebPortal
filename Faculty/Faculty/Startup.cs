@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using DinkToPdf;
 using DinkToPdf.Contracts;
@@ -37,11 +38,14 @@ namespace Faculty
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.Configure<Assignment>(Configuration);
             services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
-            var context = new CustomAssemblyLoadContext();
 
-            //DOTNET is unable to load following dlls in linux x64
-            //For Windows uncomment the following line and uncomment lines in Pages ViewAssignmentSubmissions and ViewRegistrationAdmin
-            //context.LoadUnmanagedLibrary(Path.Combine(Directory.GetCurrentDirectory(), "libwkhtmltox.dll"));
+            //DOTNET is unable to load following libwkhtmltox.dll in linux x64
+            //Therefore, Always publish as self contained app
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                var context = new CustomAssemblyLoadContext();
+                context.LoadUnmanagedLibrary(Path.Combine(Directory.GetCurrentDirectory(), "libwkhtmltox.dll"));
+            }
             services.AddDbContext<UserDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDbContext<ProfileDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDbContext<PhdStudentsDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
