@@ -11,6 +11,8 @@ This is a Web Portal where a faculty can do the following tasks without requirin
 - Post assignments for students. 
 - Students can enroll into a course.
 - Students can upload solutions for assignments (After geting online approval from faculty).
+- Faculty can export list of registered students as pdfs for printing.
+- Faculty can export list of submissions of an assignment as pdfs for printing.
 - Faculty can add/edit details about his/her research publications.
 - Faculty can add/edit details about his/her research scholars.
 - Edit Professional, Personal Details and Contact Details.
@@ -35,39 +37,54 @@ This is a Web Portal where a faculty can do the following tasks without requirin
 
 **libwkhtmltox.dll**, **libwkhtmltox.dylib**, **libwkhtmltox.so** : These are the dlls used to generate pdf files.
 
-## **Setup**
+
+## **Additional Setup**
 
 In addition to the general procedure for creating an ASP.NET Core Razor project, following steps are required after coping/replacing all the folders/files of this project in their respective directories:
 
-- Install DinkToPdf NuGet Package either from NuGet Manager or by entering this command in Package Manager Console : `Install-Package DinkToPdf -Version 1.0.8`
+- Install DinkToPdf NuGet Package either from NuGet Manager or by entering following commands 
+    - Package Manager Console : `Install-Package DinkToPdf -Version 1.0.8`
+    - Command Terminal : `dotnet add package DinkToPdf --version 1.0.8`
 - Add database connection string to appsettings.json file
 - Add/Apply Migrations corresponding to each DbContext
     - PowerShell Command : `Add-Migration Migration_Name --context DbContext_Name`
-    - Console Command : `dotnet ef migrations add Migration_Name --context DbContext_Name`
+    - Command Terminal : `dotnet ef migrations add Migration_Name --context DbContext_Name`
     - Replace `Migration_Name` with any name and `DbContext_Name` with a particular DbContext class name 
 - Update Database after performing above steps for each DbContext
     - PowerShell Command : `Update-Database --context DbContext_Name`
-    - Console Command : `dotnet ef database update --context DbContext_Name`
+    - Command Terminal : `dotnet ef database update --context DbContext_Name`
     - Replace `DbContext_Name` with a particular DbContext class name
 - When the WebApp runs for the first time go to CreateAccount page first to create Admin Account, without Admin Account WebApp will give error. To go to CreateAccount page click on Create Admin Account Button on Error Page or type the following url to go to CreateAccount Page
     - On Localhost : `http://localhost:port_number/CreateAccount` replace port _number with the previous port number given
     - Online : `http://abc.example.com/CreateAccount` replace abc.example.com with your domain
 
+**Always publish this app as Self Contained Web App, Otherwise it will show errors while exporting pdfs** 
+
+**In linux, if you run WebApp without publishing, i.e by using `dotnet run`, it will throw SystemDLLNotFound Exception when exporting pdf. That's why you should publish it as SelfContained WebApp so that it doesn't show Exception at runtime.**
+
+To publish as self contained app Add this line `<RuntimeIdentifiers>win10-x64;ubuntu.18.04-x64;ubuntu.16.04-x64;ubuntu.14.04-x64</RuntimeIdentifiers>` in csproj file after the `<targetframework>` tag, inside `<propertygroup>` tag.
+Use this command for publishing the WebApp :
+   - Ubuntu 18.04 : `dotnet publish -c release -r ubuntu.18.04-x64`
+   - Ubuntu 16.04 : `dotnet publish -c release -r ubuntu.16.04-x64`
+   - Ubuntu 14.04 : `dotnet publish -c release -r ubuntu.14.04-x64`
+
+ You can replace Ubuntu version numbers with the Ubuntu version you have. For more info on publishing Self Contained WebApp, visit <https://blogs.msdn.microsoft.com/luisdem/2017/03/19/net-core-1-1-how-to-publish-a-self-contained-application/>.
+
 ## **Pages Folder**
 
 This folder contains all the pages required for generating dynamic HTML pages.
 
-### **Shared Folder**
+### Shared Folder
 
 This folder contains all the layout files used by pages depending on context and access level of a user.
 
-### **Pages and their functionalities**
+### Pages and their functionalities
 
 There are two files for a single page:
 - First with the extension cshtml is C# HTML file for generating HTML file based on data passed from code behind file.
 - Second with the extension cshtml.cs is the code behind file for accesing database and doing various other backend tasks.
 
-#### **Pages Description**
+**Pages Description**
 
 *[Anyone/Admin/Student]* after a page name signifies who can access this page
 
