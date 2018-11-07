@@ -8,6 +8,7 @@
     <None Remove="assets\styles.css" />
     <None Remove="FacultyDatabase.db" />
     <None Remove="libwkhtmltox.dll" />
+  <None Remove="libwkhtmltox.so" />
   </ItemGroup>
 
   <ItemGroup>
@@ -18,6 +19,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <Content Include="libwkhtmltox.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  <Content Include="libwkhtmltox.so">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -63,9 +67,6 @@
 
   <ItemGroup>
     <None Update="libwkhtmltox.dylib">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </None>
-    <None Update="libwkhtmltox.so">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
   </ItemGroup>
